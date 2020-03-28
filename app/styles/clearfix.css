@@ -1,0 +1,142 @@
+* {
+  box-sizing: border-box;
+  transition: none 0.2s ease-in-out;
+}
+
+html {
+  user-select: none;
+  white-space: nowrap;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  top: 0;
+  right: 0;
+  left: 0;
+  font-size: 16px;
+}
+
+html {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  min-height: -moz-available;
+  min-height: available;
+  height: auto;
+}
+
+html.disableScroll {
+  position: fixed;
+}
+
+html,
+input,
+button {
+  line-height: 1.4;
+}
+
+html,
+input,
+textarea,
+pre {
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+button,
+ol,
+ul,
+li,
+figure,
+p,
+pre {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  position: relative;
+  height: 100%;
+  margin: 0 auto;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+a {
+  cursor: pointer;
+  display: inline-block;
+  color: inherit;
+}
+
+a,
+a:hover,
+a:focus {
+  text-decoration: none;
+}
+
+a:disabled {
+  pointer-events: none;
+}
+
+input,
+button {
+  border: 0;
+  border-radius: 0;
+  outline: 0;
+  background-color: transparent;
+  font-size: inherit;
+}
+
+input::placeholder {
+  color: hsl(0 0% 64%);
+}
+
+input,
+textarea {
+  resize: none;
+  outline: none;
+  vertical-align: middle;
+  line-height: 1.4;
+  border: 0;
+  color: inherit;
+  font-size: inherit;
+}
+
+strong {
+  display: inline-block;
+}
+
+button {
+  cursor: pointer;
+  text-transform: inherit;
+  color: inherit;
+}
+
+svg {
+  width: 100%;
+  height: 100%;
+}
+
+#Root {
+  height: 100%;
+}
+
+html:lang(ko) {
+  font-family: Noto Sans KR, Noto Sans, Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}

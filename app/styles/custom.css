@@ -1,0 +1,24 @@
+html {
+  color: #212121;
+}
+
+body {
+  background-color: hsl(0, 0%, 98%);
+}
+
+#Root {
+  max-width: 1920px;
+
+  margin: 0 auto;
+
+  box-shadow: 0 0 0 1px #e0e0e0;
+}
+
+#Root[aria-hidden="true"] {
+  z-index: 0;
+  position: relative;
+}
+
+a.active {
+  pointer-events: none;
+}

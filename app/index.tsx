@@ -1,19 +1,17 @@
-import React, { Fragment } from 'react';
-import { render } from 'react-dom';
-import { AppContainer as ReactHotAppContainer } from 'react-hot-loader';
-import Root from './containers/Root';
-import { configureStore, history } from './store/configureStore';
-import './app.global.css';
-
-const store = configureStore();
+import React, { Fragment } from "react";
+import { render } from "react-dom";
+import { AppContainer as ReactHotAppContainer } from "react-hot-loader";
+import { Pages } from "./Pages";
 
 const AppContainer = process.env.PLAIN_HMR ? Fragment : ReactHotAppContainer;
 
-document.addEventListener('DOMContentLoaded', () =>
+declare const Root: HTMLDivElement;
+
+document.addEventListener("DOMContentLoaded", () =>
   render(
     <AppContainer>
-      <Root store={store} history={history} />
+      <Pages />
     </AppContainer>,
-    document.getElementById('root')
+    Root
   )
 );

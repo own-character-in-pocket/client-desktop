@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { render } from 'react-dom';
 import { AppContainer as ReactHotAppContainer } from 'react-hot-loader';
 import { MemoryRouter } from 'react-router-dom';
+import { RootLayout } from './layouts/RootLayout';
 import { Pages } from './pages';
 import './styles';
 
@@ -9,7 +10,9 @@ const AppContainer = process.env.PLAIN_HMR ? Fragment : ReactHotAppContainer;
 
 const App = () => (
   <MemoryRouter>
-    <Pages />
+    <RootLayout>
+      <Pages />
+    </RootLayout>
   </MemoryRouter>
 );
 

@@ -12,8 +12,8 @@ const Layout = styled.div`
     'Filterings Characters' 1fr
     / min-content 1fr;
 
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 `;
 
 const UniverseLayout = styled.div`

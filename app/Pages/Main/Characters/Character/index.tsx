@@ -17,9 +17,10 @@ const Layout = styled.div`
   border-radius: 4px;
 
   transition-property: box-shadow;
+  transition-timing-function: linear;
 
   &:hover {
-    box-shadow: inset 0 0 0 1px hsl(0, 0%, 84%);
+    box-shadow: 0 0 16px 0 hsl(0, 0%, 84%);
 
     img {
       transform: scale(1.1);

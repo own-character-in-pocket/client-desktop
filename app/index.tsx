@@ -1,16 +1,16 @@
 import React, { Fragment } from 'react';
 import { render } from 'react-dom';
 import { AppContainer as ReactHotAppContainer } from 'react-hot-loader';
-import { BrowserRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 import { Pages } from './pages';
 import './styles';
 
 const AppContainer = process.env.PLAIN_HMR ? Fragment : ReactHotAppContainer;
 
 const App = () => (
-  <BrowserRouter>
+  <MemoryRouter>
     <Pages />
-  </BrowserRouter>
+  </MemoryRouter>
 );
 
 declare const Root: HTMLDivElement;

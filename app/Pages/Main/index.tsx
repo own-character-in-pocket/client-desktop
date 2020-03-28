@@ -3,14 +3,45 @@ import styled from 'styled-components';
 import { Characters } from './Characters';
 import { Filterings } from './Filterings';
 import { Provider } from './Store';
+import { Universe } from './Universe';
 
-const Layout = styled.div``;
+const Layout = styled.div`
+  display: grid;
+  grid-template:
+    'Universe Characters' min-content
+    'Filterings Characters' 1fr
+    / min-content 1fr;
+
+  width: 100vw;
+  height: 100vh;
+`;
+
+const UniverseLayout = styled.div`
+  grid-area: Universe;
+`;
+
+const FilteringsLayout = styled.div`
+  grid-area: Filterings;
+`;
+
+const CharactersLayout = styled.div`
+  overflow-y: auto;
+
+  grid-area: Characters;
+`;
 
 export const Main = () => (
   <Provider>
     <Layout>
-      <Filterings />
-      <Characters />
+      <UniverseLayout>
+        <Universe />
+      </UniverseLayout>
+      <FilteringsLayout>
+        <Filterings />
+      </FilteringsLayout>
+      <CharactersLayout>
+        <Characters />
+      </CharactersLayout>
     </Layout>
   </Provider>
 );

@@ -6,7 +6,7 @@ import { Main } from './Main';
 
 export const Pages = () => (
   <Switch>
-    <Route path={MAIN} component={Main} />
-    <Route path={CHARACTER_EDITOR} component={CharacterEditor} />
+    <Route path={MAIN} component={Main} exact={true} />
+    <Route path={CHARACTER_EDITOR} component={CharacterEditor} exact={true} />
   </Switch>
 );

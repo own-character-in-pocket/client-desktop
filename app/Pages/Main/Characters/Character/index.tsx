@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import EggIcon from '../../../../assets/icons/egg.svg';
 import { Lineclamp } from '../../../../atomics/Lineclamp';
 import { CharacterModel } from '../../../../models/Character';
 
@@ -58,8 +57,6 @@ const Guard = styled.div`
 `;
 
 const Image = styled.img`
-  background-color: hsl(210, 100%, 84%);
-
   transition-property: transform;
   transition-duration: 1000ms;
 `;
@@ -85,7 +82,7 @@ export const Character = ({ model, onClick }: Props) => (
   <Layout onClick={onClick}>
     <Top>
       <Guard>
-        <Image src={EggIcon} />
+        <Image src={model.image} style={{ backgroundColor: model.personalColor }} />
       </Guard>
     </Top>
     <Bottom>

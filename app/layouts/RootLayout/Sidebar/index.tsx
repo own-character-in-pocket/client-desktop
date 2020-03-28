@@ -2,10 +2,10 @@ import { compile } from 'path-to-regexp';
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import EggIcon from '../../../assets/icons/egg.svg';
-import HomeIcon from '../../../assets/icons/home.svg';
 import CrossBlackIcon from '../../../assets/icons/cross-black.svg';
 import CrossRedIcon from '../../../assets/icons/cross-red.svg';
+import EggIcon from '../../../assets/icons/egg.svg';
+import HomeIcon from '../../../assets/icons/home.svg';
 import { CHARACTER_EDITOR, MAIN } from '../../../constants/Route';
 import { useAppStore } from '../../../store';
 import { SidebarAction } from '../../../store/Sidebar';
@@ -75,8 +75,6 @@ const CloseButton = styled.img`
 const ProfileAnchor = styled(Anchor)`
   position: relative;
 
-  background-color: hsl(210, 100%, 84%);
-
   &:hover {
     ${CloseButton} {
       display: initial;
@@ -112,7 +110,11 @@ export const Sidebar = () => {
   const closeProfileEditorById = (id: string) => {
     dispatch(SidebarAction.removeCharacter(id));
 
-    history.push(MAIN);
+    const currentPath = history.location.pathname;
+    const profilePath = compile(CHARACTER_EDITOR)({ id });
+    if (currentPath === profilePath) {
+      history.push(MAIN);
+    }
   };
 
   return (
@@ -126,7 +128,7 @@ export const Sidebar = () => {
           {characterList.map(character => {
             const to = compile(CHARACTER_EDITOR)({ id: character.id });
             return (
-              <ProfileAnchor key={character.id} to={to}>
+              <ProfileAnchor key={character.id} to={to} style={{ backgroundColor: character.personalColor }}>
                 <CloseButton src={CrossBlackIcon} onClick={event => (event.preventDefault(), closeProfileEditorById(character.id))} />
                 <Image src={EggIcon} />
               </ProfileAnchor>

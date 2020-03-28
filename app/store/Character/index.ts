@@ -2,7 +2,11 @@ import { CharacterModel } from '../../models/Character';
 import { createDuck } from '../../utils/store';
 
 const createInitialState = () => ({
-  list: [] as CharacterModel[]
+  list: [
+    CharacterModel.of({ displayName: 'Danuel', personalColor: 'hsl(210, 100%, 84%)' }),
+    CharacterModel.of({ displayName: 'Danuel', personalColor: 'hsl(0, 100%, 84%)' }),
+    CharacterModel.of({ displayName: 'Danuel', personalColor: 'hsl(330, 100%, 84%)' })
+  ]
 });
 
 export const CharacterAction = createDuck({

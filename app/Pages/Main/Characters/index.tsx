@@ -1,5 +1,10 @@
-import React, { useState } from 'react';
+import { compile } from 'path-to-regexp';
+import React from 'react';
+import { useHistory } from 'react-router';
 import styled from 'styled-components';
+import { CHARACTER_EDITOR } from '../../../constants/Route';
+import { useAppStore } from '../../../store';
+import { SidebarAction } from '../../../store/Sidebar';
 import { Character } from './Character';
 
 const Layout = styled.div`
@@ -11,11 +16,20 @@ const Layout = styled.div`
 `;
 
 export const Characters = () => {
-  const [characterList] = useState(() => Array.from({ length: 64 }, () => ({})));
+  const history = useHistory();
+  const [characterList, dispatch] = useAppStore(store => store.Character.list);
+
+  const moveToCharacterEditor = (id: string) => {
+    dispatch(SidebarAction.addCharacter(id));
+
+    const path = compile(CHARACTER_EDITOR)({ id });
+    history.push(path);
+  };
+
   return (
     <Layout>
-      {characterList.map((_, index) => (
-        <Character key={index} />
+      {characterList.map((character, index) => (
+        <Character key={index} model={character} onClick={() => moveToCharacterEditor(character.id)} />
       ))}
     </Layout>
   );

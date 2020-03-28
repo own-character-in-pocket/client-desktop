@@ -1,9 +1,14 @@
+import { compile } from 'path-to-regexp';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import { MAIN, CHARACTER_EDITOR } from '../../../constants/Route';
-import HomeIcon from '../../../assets/icons/home.svg';
 import EggIcon from '../../../assets/icons/egg.svg';
+import HomeIcon from '../../../assets/icons/home.svg';
+import CrossBlackIcon from '../../../assets/icons/cross-black.svg';
+import CrossRedIcon from '../../../assets/icons/cross-red.svg';
+import { CHARACTER_EDITOR, MAIN } from '../../../constants/Route';
+import { useAppStore } from '../../../store';
+import { SidebarAction } from '../../../store/Sidebar';
 
 const Layout = styled.div`
   overflow-x: auto;
@@ -49,8 +54,34 @@ const MainAnchor = styled(Anchor)`
   background-color: hsl(0, 0%, 64%);
 `;
 
+const CloseButton = styled.img`
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  display: none;
+
+  width: 1.25rem;
+  height: 1.25rem;
+
+  padding: 0.25rem;
+
+  &:hover {
+    content: url(${CrossRedIcon});
+  }
+`;
+
 const ProfileAnchor = styled(Anchor)`
+  position: relative;
+
   background-color: hsl(210, 100%, 84%);
+
+  &:hover {
+    ${CloseButton} {
+      display: initial;
+    }
+  }
 `;
 
 const Image = styled.img`
@@ -70,20 +101,39 @@ const Separator = styled.hr`
   border-bottom: 1px solid hsl(0, 0%, 84%);
 `;
 
-export const Sidebar = () => (
-  <Layout>
-    <MainAnchor to={MAIN}>
-      <Image src={HomeIcon} />
-    </MainAnchor>
-    <Separator />
-    <ProfileAnchor to={CHARACTER_EDITOR}>
-      <Image src={EggIcon} />
-    </ProfileAnchor>
-    <ProfileAnchor to={CHARACTER_EDITOR}>
-      <Image src={EggIcon} />
-    </ProfileAnchor>
-    <ProfileAnchor to={CHARACTER_EDITOR}>
-      <Image src={EggIcon} />
-    </ProfileAnchor>
-  </Layout>
-);
+export const Sidebar = () => {
+  const history = useHistory();
+  const [characterList, dispatch] = useAppStore(store =>
+    store.Character.list.filter(character => store.Sidebar.characters.has(character.id))
+  );
+
+  const hasActiveCharacter = !!characterList.length;
+
+  const closeProfileEditorById = (id: string) => {
+    dispatch(SidebarAction.removeCharacter(id));
+
+    history.push(MAIN);
+  };
+
+  return (
+    <Layout>
+      <MainAnchor to={MAIN}>
+        <Image src={HomeIcon} />
+      </MainAnchor>
+      {hasActiveCharacter && (
+        <>
+          <Separator />
+          {characterList.map(character => {
+            const to = compile(CHARACTER_EDITOR)({ id: character.id });
+            return (
+              <ProfileAnchor key={character.id} to={to}>
+                <CloseButton src={CrossBlackIcon} onClick={event => (event.preventDefault(), closeProfileEditorById(character.id))} />
+                <Image src={EggIcon} />
+              </ProfileAnchor>
+            );
+          })}
+        </>
+      )}
+    </Layout>
+  );
+};

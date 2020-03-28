@@ -1,11 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import EggIcon from '../../../../assets/icons/egg.svg';
 import { Lineclamp } from '../../../../atomics/Lineclamp';
-import { CHARACTER_EDITOR } from '../../../../constants/Route';
+import { CharacterModel } from '../../../../models/Character';
 
 const Layout = styled.div`
+  cursor: pointer;
+
   overflow: hidden;
 
   position: relative;
@@ -75,21 +76,24 @@ const TextLayout = styled.div`
 
 const Text = styled(Lineclamp)``;
 
-export const Character = () => (
-  <Link to={CHARACTER_EDITOR}>
-    <Layout>
-      <Top>
-        <Guard>
-          <Image src={EggIcon} />
-        </Guard>
-      </Top>
-      <Bottom>
-        <Guard>
-          <TextLayout>
-            <Text>Text</Text>
-          </TextLayout>
-        </Guard>
-      </Bottom>
-    </Layout>
-  </Link>
+type Props = {
+  model: CharacterModel;
+  onClick: () => void;
+};
+
+export const Character = ({ model, onClick }: Props) => (
+  <Layout onClick={onClick}>
+    <Top>
+      <Guard>
+        <Image src={EggIcon} />
+      </Guard>
+    </Top>
+    <Bottom>
+      <Guard>
+        <TextLayout>
+          <Text>{model.displayName}</Text>
+        </TextLayout>
+      </Guard>
+    </Bottom>
+  </Layout>
 );

@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { Characters } from './Characters';
 import { Filterings } from './Filterings';
-import { Provider } from './Store';
 import { Universe } from './Universe';
 
 const Layout = styled.div`
@@ -28,20 +27,20 @@ const CharactersLayout = styled.div`
   overflow-y: auto;
 
   grid-area: Characters;
+
+  height: 100vh;
 `;
 
 export const Main = () => (
-  <Provider>
-    <Layout>
-      <UniverseLayout>
-        <Universe />
-      </UniverseLayout>
-      <FilteringsLayout>
-        <Filterings />
-      </FilteringsLayout>
-      <CharactersLayout>
-        <Characters />
-      </CharactersLayout>
-    </Layout>
-  </Provider>
+  <Layout>
+    <UniverseLayout>
+      <Universe />
+    </UniverseLayout>
+    <FilteringsLayout>
+      <Filterings />
+    </FilteringsLayout>
+    <CharactersLayout>
+      <Characters />
+    </CharactersLayout>
+  </Layout>
 );

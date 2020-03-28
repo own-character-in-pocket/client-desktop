@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Lineclamp } from '../../../../atomics/Lineclamp';
-import { CharacterModel } from '../../../../models/Character';
+import { CharacterModel } from '../../models/Character';
+import { Lineclamp } from '../Lineclamp';
 
 const Layout = styled.div`
   cursor: pointer;

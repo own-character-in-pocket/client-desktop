@@ -1,22 +1,52 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Personality } from './Personality';
+import { Memo } from './Memo';
 import { Profile } from './Profile';
 import { Relationships } from './Relationships';
-import { Provider } from './Store';
+import { StoreProvider } from './Store';
 import { Story } from './Story';
 import { Thumbnail } from './Thumbnail';
+import { Tags } from './Tags';
 
-const Layout = styled.div``;
+const Layout = styled.div`
+  display: grid;
+  grid-gap: 1rem;
+
+  padding: 1rem;
+`;
+
+const Top = styled.div`
+  display: grid;
+  grid-gap: 1rem;
+
+  max-width: 24rem;
+  width: 100%;
+`;
+
+const ProfileLayout = styled.div`
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: min-content 1fr;
+`;
+
+const Bottom = styled.div``;
 
 export const CharacterEditor = () => (
-  <Provider>
+  <StoreProvider>
     <Layout>
-      <Thumbnail />
-      <Profile />
-      <Personality />
-      <Story />
-      <Relationships />
+      <Top>
+        <ProfileLayout>
+          <Thumbnail />
+          <Profile />
+        </ProfileLayout>
+        <Tags />
+        <Story />
+        <Memo />
+      </Top>
+
+      <Bottom>
+        <Relationships />
+      </Bottom>
     </Layout>
-  </Provider>
+  </StoreProvider>
 );

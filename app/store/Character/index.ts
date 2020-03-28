@@ -3,7 +3,14 @@ import { createDuck } from '../../utils/store';
 
 const createInitialState = () => ({
   list: [
-    CharacterModel.of({ displayName: 'Danuel', personalColor: 'hsl(210, 100%, 84%)' }),
+    CharacterModel.of({
+      displayName: 'Danuel',
+      personalColor: 'hsl(210, 100%, 84%)',
+      relationshipList: [
+        { displayName: 'Danuel', personalColor: 'hsl(0, 100%, 84%)' },
+        { displayName: 'Danuel', personalColor: 'hsl(330, 100%, 84%)' }
+      ]
+    }),
     CharacterModel.of({ displayName: 'Danuel', personalColor: 'hsl(0, 100%, 84%)' }),
     CharacterModel.of({ displayName: 'Danuel', personalColor: 'hsl(330, 100%, 84%)' })
   ]

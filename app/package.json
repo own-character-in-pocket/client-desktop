@@ -1,6 +1,6 @@
 {
   "name": "own-character-in-pocket",
-  "productName": "own-character-in-pocket",
+  "productName": "Own Character in Pocket",
   "version": "0.0.1",
   "description": "Management Tools for Own Character",
   "main": "./main.prod.js",

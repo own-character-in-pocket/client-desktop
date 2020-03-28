@@ -1,9 +1,9 @@
-import React, { Fragment } from "react";
-import { render } from "react-dom";
-import { AppContainer as ReactHotAppContainer } from "react-hot-loader";
-import { BrowserRouter } from "react-router-dom";
-import { Pages } from "./pages";
-import "./styles";
+import React, { Fragment } from 'react';
+import { render } from 'react-dom';
+import { AppContainer as ReactHotAppContainer } from 'react-hot-loader';
+import { BrowserRouter } from 'react-router-dom';
+import { Pages } from './pages';
+import './styles';
 
 const AppContainer = process.env.PLAIN_HMR ? Fragment : ReactHotAppContainer;
 
@@ -15,7 +15,7 @@ const App = () => (
 
 declare const Root: HTMLDivElement;
 
-document.addEventListener("DOMContentLoaded", () =>
+document.addEventListener('DOMContentLoaded', () =>
   render(
     <AppContainer>
       <App />

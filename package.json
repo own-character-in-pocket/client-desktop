@@ -1,6 +1,6 @@
 {
   "name": "own-character-in-pocket",
-  "productName": "OwnCharacterInPocket",
+  "productName": "Own Character in Pocket",
   "version": "0.0.1",
   "description": "Management Tools for Own Character",
   "scripts": {
@@ -25,7 +25,7 @@
     "start-renderer-dev": "cross-env NODE_ENV=development webpack-dev-server --config configs/webpack.config.renderer.dev.babel.js"
   },
   "build": {
-    "productName": "OwnCharacterInPocket",
+    "productName": "Own Character in Pocket",
     "appId": "com.own-character-in-pocket.ClientDesktop",
     "files": [
       "dist/",

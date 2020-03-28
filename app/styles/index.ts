@@ -1,2 +1,2 @@
-import "./clearfix.css";
-import "./custom.css";
+import './clearfix.css';
+import './custom.css';

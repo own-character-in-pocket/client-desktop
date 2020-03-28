@@ -1,1 +1,1 @@
-export const MAIN = "/";
+export const MAIN = '/';

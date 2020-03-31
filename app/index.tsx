@@ -5,9 +5,9 @@ import { AppContainer as ReactHotAppContainer } from 'react-hot-loader';
 import { MemoryRouter } from 'react-router-dom';
 import 'reflect-metadata';
 import { RootLayout } from './layouts/RootLayout';
-import { Pages } from './pages';
 import { AppStoreProvider } from './store';
 import './styles';
+import { Views } from './views';
 
 enableMapSet();
 
@@ -17,7 +17,7 @@ const App = () => (
   <MemoryRouter>
     <AppStoreProvider>
       <RootLayout>
-        <Pages />
+        <Views />
       </RootLayout>
     </AppStoreProvider>
   </MemoryRouter>

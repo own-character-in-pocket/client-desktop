@@ -1,7 +1,7 @@
 import { createDuck } from '../../utils/store';
 
 const createInitialState = () => ({
-  characters: new Set<string>()
+  cards: new Set<string>()
 });
 
 export const SidebarAction = createDuck({
@@ -9,10 +9,10 @@ export const SidebarAction = createDuck({
   createInitialState,
   reducers: {
     addCharacter(state, id: string) {
-      state.characters.add(id);
+      state.cards.add(id);
     },
     removeCharacter(state, id: string) {
-      state.characters.delete(id);
+      state.cards.delete(id);
     }
   }
 });

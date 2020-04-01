@@ -1,8 +1,8 @@
+import { Autocomplete } from '@app/atomics/Autocomplete';
 import { CardModel } from '@app/models/Card';
 import { SimpleCard } from '@app/molecules/SimpleCard';
 import React from 'react';
 import styled from 'styled-components';
-import { CardType } from './CardType';
 
 const Layout = styled.div`
   display: grid;
@@ -21,6 +21,14 @@ const Right = styled.div`
   grid-template-columns: min-content 1fr;
 
   height: min-content;
+
+  padding: 0.5rem;
+
+  border-radius: 0.25rem;
+
+  &:hover {
+    background-color: hsl(0, 0%, 96%);
+  }
 `;
 
 const TextInput = styled.input`
@@ -28,6 +36,7 @@ const TextInput = styled.input`
 
   border-radius: 0.25rem;
   box-shadow: inset 0 0 0 1px hsl(0, 0%, 84%);
+  background-color: white;
 `;
 
 const ImageInput = styled.input`
@@ -41,7 +50,7 @@ export const Thumbnail = () => (
     </Left>
     <Right>
       <div>카드 타입</div>
-      <CardType />
+      <Autocomplete />
       <div>카드 이름</div>
       <TextInput placeholder="Danuel" />
       <div>배경색</div>

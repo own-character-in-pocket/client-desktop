@@ -1,4 +1,5 @@
-import { Exclude, Expose, plainToClass } from 'class-transformer';
+import { Exclude, Expose, plainToClass, Transform } from 'class-transformer';
+import { CardFieldModel } from './CardField';
 
 @Exclude()
 export class CardFieldGroupModel {
@@ -17,4 +18,8 @@ export class CardFieldGroupModel {
 
   @Expose()
   order!: number;
+
+  @Expose()
+  @Transform((value = [null, null, null]) => value.map(CardFieldModel.of))
+  fieldList!: CardFieldModel[];
 }

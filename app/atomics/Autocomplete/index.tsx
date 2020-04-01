@@ -1,23 +1,31 @@
-import { None } from '@app/atomics/None';
-import { useAppSelector } from '@app/store';
-import { useDispatch } from '@app/views/CardEditorView/Store';
-import { CardAction } from '@app/views/CardEditorView/Store/Card';
 import React, { useState } from 'react';
 import ReactSelect, { InputActionMeta } from 'react-select';
+import { None } from '../None';
 
-export const CardType = () => {
-  const cardTypes = useAppSelector(store => store.Card);
-  const dispatch = useDispatch();
-  const [cardType, setCardType] = useState('');
+const NO_OPERATION = () => {};
 
-  const updateCardType = (cardType: string, actionMeta: InputActionMeta) => {
+type Option = any;
+
+type Props = {
+  className?: string;
+  placeholder?: string;
+  defaultOption?: Option;
+  options?: Option[];
+  onInputChange?: (inputValue: string) => void;
+  onChange?: (option: Option) => void;
+};
+
+export const Autocomplete = ({ className, placeholder, defaultOption, options, onInputChange = NO_OPERATION, onChange }: Props) => {
+  const [inputValue, setInputValue] = useState('');
+
+  const updateInputValue = (inputValue: string, actionMeta: InputActionMeta) => {
     switch (actionMeta.action) {
       case 'input-change': {
-        setCardType(cardType);
+        setInputValue(inputValue);
         return;
       }
       case 'set-value': {
-        // dispatch(CardAction.setCardTypeId(cardType));
+        onInputChange(inputValue);
         return;
       }
     }
@@ -25,11 +33,13 @@ export const CardType = () => {
 
   return (
     <ReactSelect
+      className={className}
       isClearable={false}
-      inputValue={cardType}
-      components={{
-        IndicatorSeparator: None
-      }}
+      placeholder={placeholder}
+      value={defaultOption}
+      options={options}
+      inputValue={inputValue}
+      components={{ IndicatorSeparator: None }}
       styles={{
         control: style => ({
           ...style,
@@ -58,7 +68,8 @@ export const CardType = () => {
           padding: 0
         })
       }}
-      onInputChange={updateCardType}
+      onInputChange={updateInputValue}
+      onChange={onChange}
     />
   );
 };

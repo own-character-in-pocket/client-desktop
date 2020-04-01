@@ -3,8 +3,6 @@ import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 
 const Layout = styled.div`
-  cursor: pointer;
-
   overflow: hidden;
 
   position: relative;
@@ -17,6 +15,10 @@ const Layout = styled.div`
 
   transition-property: box-shadow;
   transition-timing-function: linear;
+
+  &[data-is-clickable='true'] {
+    cursor: pointer;
+  }
 
   &:hover {
     box-shadow: 0 0 16px 0 hsl(0, 0%, 84%);
@@ -57,7 +59,7 @@ type Props = Styleable & {
 };
 
 export const Card = ({ className, style, children, onClick }: Props) => (
-  <Layout className={className} style={style} onClick={onClick}>
+  <Layout className={className} style={style} onClick={onClick} data-is-clickable={!!onClick}>
     {children}
   </Layout>
 );

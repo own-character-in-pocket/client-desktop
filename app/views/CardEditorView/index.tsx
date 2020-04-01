@@ -1,15 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Relationships } from './Relationships';
-import { StoreProvider } from './Store';
 import { CardData } from './CardData';
 import { FieldGroups } from './FieldGroups';
+import { Relationships } from './Relationships';
+import { StoreProvider } from './Store';
 
 const Layout = styled.div`
-  display: grid;
-  grid-gap: 1rem;
-
-  padding: 1rem;
+  padding: 0.5rem;
 `;
 
 const Top = styled.div`
@@ -18,11 +15,15 @@ const Top = styled.div`
 
   max-width: 24rem;
   width: 100%;
+
+  padding: 0.5rem;
 `;
 
 const Center = styled.div``;
 
-const Bottom = styled.div``;
+const Bottom = styled.div`
+  padding: 0.5rem;
+`;
 
 export const CardEditorView = () => (
   <StoreProvider>

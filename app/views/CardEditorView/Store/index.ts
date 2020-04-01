@@ -1,4 +1,4 @@
-import { createStore, combineReducers } from '../../../utils/store';
+import { createStore, combineReducers } from '@app/utils/store';
 import { CardAction as Card } from './Card';
 
 const reducers = { Card };

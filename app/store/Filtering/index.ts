@@ -1,4 +1,4 @@
-import { createDuck } from '../../utils/store';
+import { createDuck } from '@app/utils/store';
 
 const createInitialState = () => ({
   tags: new Set<string>(),

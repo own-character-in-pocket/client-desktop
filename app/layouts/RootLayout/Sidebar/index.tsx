@@ -1,16 +1,16 @@
+import BentoIcon from '@app/assets/icons/bento.svg';
+import CrossBlackIcon from '@app/assets/icons/cross-black.svg';
+import CrossRedIcon from '@app/assets/icons/cross-red.svg';
+import EggIcon from '@app/assets/icons/egg.svg';
+import HomeIcon from '@app/assets/icons/home.svg';
+import HumanIcon from '@app/assets/icons/human.svg';
+import { CARD_EDITOR_VIEW, CARD_GRID_VIEW, MAIN_VIEW } from '@app/constants/Views';
+import { useAppStore } from '@app/store';
+import { SidebarAction } from '@app/store/Sidebar';
 import { compile } from 'path-to-regexp';
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import CrossBlackIcon from '../../../assets/icons/cross-black.svg';
-import CrossRedIcon from '../../../assets/icons/cross-red.svg';
-import EggIcon from '../../../assets/icons/egg.svg';
-import HumanIcon from '../../../assets/icons/human.svg';
-import HomeIcon from '../../../assets/icons/home.svg';
-import BentoIcon from '../../../assets/icons/bento.svg';
-import { CARD_EDITOR_VIEW, MAIN_VIEW, CARD_GRID_VIEW } from '../../../constants/Views';
-import { useAppStore } from '../../../store';
-import { SidebarAction } from '../../../store/Sidebar';
 
 const Layout = styled.div`
   overflow-x: auto;
@@ -142,7 +142,7 @@ export const Sidebar = () => {
         <>
           <Separator />
           {cardList.map(card => {
-            const to = compile(CARD_EDITOR_VIEW)({ id: card.id });
+            const to = compile(CARD_EDITOR_VIEW)({ id: card.id.toString() });
             return (
               <ProfileAnchor key={card.id} to={to} style={{ backgroundColor: card.backgroundColor }}>
                 <CloseButton src={CrossBlackIcon} onClick={event => (event.preventDefault(), closeProfileEditorById(card.id))} />

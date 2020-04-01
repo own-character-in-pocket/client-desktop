@@ -1,11 +1,11 @@
+import { CARD_EDITOR_VIEW } from '@app/constants/Views';
+import { SimpleCard } from '@app/molecules/SimpleCard';
+import { useAppStore } from '@app/store';
+import { SidebarAction } from '@app/store/Sidebar';
 import { compile } from 'path-to-regexp';
 import React from 'react';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
-import { Card } from '../../../atomics/Card';
-import { CARD_EDITOR_VIEW } from '../../../constants/Views';
-import { useAppStore } from '../../../store';
-import { SidebarAction } from '../../../store/Sidebar';
 
 const Layout = styled.div`
   display: grid;
@@ -19,17 +19,19 @@ export const Cards = () => {
   const history = useHistory();
   const [cardList, dispatch] = useAppStore(store => store.Card.list);
 
-  const moveToCharacterEditor = (id: string) => {
+  const moveToCharacterEditor = (id: number) => {
     dispatch(SidebarAction.addCharacter(id));
 
     const path = compile(CARD_EDITOR_VIEW)({ id });
     history.push(path);
   };
 
+  console.log(cardList);
+
   return (
     <Layout>
       {cardList.map((card, index) => (
-        <Card key={index} model={card} onClick={() => moveToCharacterEditor(card.id)} />
+        <SimpleCard key={index} model={card} onClick={() => moveToCharacterEditor(card.id)} />
       ))}
     </Layout>
   );

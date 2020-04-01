@@ -1,6 +1,6 @@
+import { InputText } from '@app/atomics/InputText';
 import React from 'react';
 import styled from 'styled-components';
-import { InputText } from '../../../../atomics/InputText';
 
 const Layout = styled.div`
   margin-bottom: 1rem;

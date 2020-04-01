@@ -1,8 +1,7 @@
+import EggIcon from '@app/assets/icons/egg.svg';
+import { Time } from '@app/utils/time';
 import { Exclude, Expose, plainToClass, Transform } from 'class-transformer';
 import { immerable } from 'immer';
-import { v4 } from 'uuid';
-import EggIcon from '../assets/icons/egg.svg';
-import { Time } from '../utils/time';
 
 const DEFAULT_BACKGROUND_COLOR = 'hsl(210, 100%, 84%)';
 
@@ -15,15 +14,17 @@ export class CardModel {
   readonly [immerable] = true;
 
   @Expose()
-  @Transform((value = v4()) => value)
-  id!: string;
+  id!: number;
+
+  @Expose()
+  cardTypeId!: number;
 
   @Expose()
   displayName!: string;
 
   @Expose()
   @Transform((value = EggIcon) => value)
-  image!: string;
+  thumbnail!: string;
 
   @Expose()
   @Transform((value = DEFAULT_BACKGROUND_COLOR) => value)

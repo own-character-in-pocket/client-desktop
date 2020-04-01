@@ -1,13 +1,6 @@
-import React from 'react';
+import { Styleable } from '@app/typings/styleable';
+import React, { ReactNode } from 'react';
 import styled from 'styled-components';
-import { CardModel } from '../../models/Card';
-import { Lineclamp } from '../Lineclamp';
-import HumanIcon from '../../assets/icons/human.svg';
-
-const Image = styled.img`
-  transition-property: transform;
-  transition-duration: 1000ms;
-`;
 
 const Layout = styled.div`
   cursor: pointer;
@@ -27,10 +20,6 @@ const Layout = styled.div`
 
   &:hover {
     box-shadow: 0 0 16px 0 hsl(0, 0%, 84%);
-
-    ${Image} {
-      transform: scale(1.1);
-    }
   }
 `;
 
@@ -62,46 +51,33 @@ const Guard = styled.div`
   height: 100%;
 `;
 
-const TextLayout = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  height: 100%;
-
-  padding: 0 0.5rem;
-`;
-
-const Text = styled(Lineclamp)``;
-
-const CardType = styled.img`
-  position: absolute;
-  bottom: 0;
-  right: 0;
-
-  width: 1.5rem;
-  height: 1.5rem;
-`;
-
-type Props = {
-  model: CardModel;
-  onClick: () => void;
+type Props = Styleable & {
+  children: ReactNode;
+  onClick?: () => void;
 };
 
-export const Card = ({ model, onClick }: Props) => (
-  <Layout onClick={onClick}>
-    <Top>
-      <Guard>
-        <Image src={model.image} style={{ backgroundColor: model.backgroundColor }} />
-      </Guard>
-    </Top>
-    <Bottom>
-      <Guard>
-        <TextLayout>
-          <Text>{model.displayName}</Text>
-        </TextLayout>
-        <CardType src={HumanIcon} />
-      </Guard>
-    </Bottom>
+export const Card = ({ className, style, children, onClick }: Props) => (
+  <Layout className={className} style={style} onClick={onClick}>
+    {children}
   </Layout>
+);
+
+type TopProps = {
+  children: ReactNode;
+};
+
+Card.Top = ({ children }: TopProps) => (
+  <Top>
+    <Guard>{children}</Guard>
+  </Top>
+);
+
+type BottomProps = {
+  children: ReactNode;
+};
+
+Card.Bottom = ({ children }: BottomProps) => (
+  <Bottom>
+    <Guard>{children}</Guard>
+  </Bottom>
 );

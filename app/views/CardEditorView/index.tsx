@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Relationships } from './Relationships';
 import { StoreProvider } from './Store';
 import { CardData } from './CardData';
+import { FieldGroups } from './FieldGroups';
 
 const Layout = styled.div`
   display: grid;
@@ -19,6 +20,8 @@ const Top = styled.div`
   width: 100%;
 `;
 
+const Center = styled.div``;
+
 const Bottom = styled.div``;
 
 export const CardEditorView = () => (
@@ -27,6 +30,10 @@ export const CardEditorView = () => (
       <Top>
         <CardData />
       </Top>
+
+      <Center>
+        <FieldGroups />
+      </Center>
 
       <Bottom>
         <Relationships />

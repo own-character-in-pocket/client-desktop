@@ -1,6 +1,6 @@
+import { CARD_EDITOR_VIEW, CARD_GRID_VIEW, MAIN_VIEW } from '@app/constants/Views';
 import React from 'react';
 import { Route, Switch } from 'react-router';
-import { CARD_EDITOR_VIEW, CARD_GRID_VIEW, MAIN_VIEW } from '../constants/Views';
 import { CardEditorView } from './CardEditorView';
 import { CardGrid } from './CardGridView';
 import { MainView } from './MainView';

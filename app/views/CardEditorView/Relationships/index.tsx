@@ -1,7 +1,7 @@
+import { CardModel } from '@app/models/Card';
+import { SimpleCard } from '@app/molecules/SimpleCard';
 import React from 'react';
 import styled from 'styled-components';
-import { Card } from '../../../atomics/Card';
-import { CardModel } from '../../../models/Card';
 import { useSelector } from '../Store';
 
 const Layout = styled.div``;
@@ -26,7 +26,7 @@ export const Relationships = () => {
       <Heading>연관관계</Heading>
       <RelationshipList>
         {cardList.map((card, index) => (
-          <Card key={index} model={card} onClick={() => updateRelationship(card)} />
+          <SimpleCard key={index} model={card} onClick={() => updateRelationship(card)} />
         ))}
       </RelationshipList>
     </Layout>

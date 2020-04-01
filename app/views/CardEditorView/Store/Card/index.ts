@@ -1,5 +1,5 @@
-import { CardModel } from '../../../../models/Card';
-import { createDuck } from '../../../../utils/store';
+import { CardModel } from '@app/models/Card';
+import { createDuck } from '@app/utils/store';
 
 const createInitialState = () => ({
   current: CardModel.of({
@@ -19,20 +19,17 @@ export const CardAction = createDuck({
     reset(state, character: CardModel) {
       state.current = character;
     },
+    setCardTypeId(state, cardTypeId: number) {
+      state.current.cardTypeId = cardTypeId;
+    },
     setDisplayName(state, displayName: string) {
       state.current.displayName = displayName;
     },
     setImage(state, image: string) {
-      state.current.image = image;
+      state.current.thumbnail = image;
     },
-    setbackgroundColor(state, backgroundColor: string) {
+    setBackgroundColor(state, backgroundColor: string) {
       state.current.backgroundColor = backgroundColor;
-    },
-    setStory(state, story: string) {
-      state.current.story = story;
-    },
-    setMemo(state, memo: string) {
-      state.current.memo = memo;
     },
     setTagList(state, tagList: string[]) {
       state.current.tagList = tagList;

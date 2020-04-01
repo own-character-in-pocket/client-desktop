@@ -47,9 +47,6 @@ const createWindow = async () => {
         : { preload: path.join(__dirname, 'dist/renderer.prod.js') }
   });
 
-  mainWindow.setTitle('Own Character in Pocket');
-  console.log(mainWindow.getTitle());
-
   mainWindow.loadURL(`file://${__dirname}/app.html`);
 
   mainWindow.webContents.on('did-finish-load', () => {

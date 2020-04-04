@@ -1,6 +1,15 @@
 import React, { useState } from 'react';
-import ReactSelect, { InputActionMeta } from 'react-select';
+import ReactSelect, { InputActionMeta, components } from 'react-select';
 import { None } from '../None';
+import ChevronBottom from '@app/assets/icons/chevron-bottom.svg';
+import styled from 'styled-components';
+
+const Image = styled.img`
+  width: 1.5rem;
+  height: 1.5rem;
+
+  padding: 0.25rem;
+`;
 
 const NO_OPERATION = () => {};
 
@@ -39,7 +48,14 @@ export const Autocomplete = ({ className, placeholder, defaultOption, options, o
       value={defaultOption}
       options={options}
       inputValue={inputValue}
-      components={{ IndicatorSeparator: None }}
+      components={{
+        IndicatorSeparator: None,
+        DropdownIndicator: (props: any) => (
+          <components.DropdownIndicator {...props}>
+            <Image src={ChevronBottom} />
+          </components.DropdownIndicator>
+        )
+      }}
       styles={{
         control: style => ({
           ...style,
@@ -66,6 +82,11 @@ export const Autocomplete = ({ className, placeholder, defaultOption, options, o
           ...style,
           cursor: 'pointer',
           padding: 0
+        }),
+        noOptionsMessage: style => ({
+          ...style,
+          padding: '0 0.25rem',
+          textAlign: 'initial'
         })
       }}
       onInputChange={updateInputValue}

@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { CardFieldGroupModel } from '@app/models/CardFieldGroup';
 import { Field } from './Field';
+import ChevronBottomIcon from '@app/assets/icons/chevron-bottom.svg';
+import ChevronUpIcon from '@app/assets/icons/chevron-up.svg';
 
 const Layout = styled.div`
   padding: 0.5rem;
@@ -14,7 +16,17 @@ const Layout = styled.div`
   }
 `;
 
+const HeadingContainer = styled.div``;
+
+const FoldButton = styled.button``;
+
+const FoldIcon = styled.img`
+  width: 1.5rem;
+  height: 1.5rem;
+`;
+
 const Heading = styled.input`
+  margin-left: 0.5rem;
   padding: 0 0.25rem;
 
   font-size: 1.25rem;
@@ -35,13 +47,27 @@ type Props = {
   model: CardFieldGroupModel;
 };
 
-export const FieldGroup = ({ model }: Props) => (
-  <Layout>
-    <Heading placeholder="그룹" />
-    <FieldList>
-      {model.fieldList.map((field, index) => (
-        <Field key={index} model={field} />
-      ))}
-    </FieldList>
-  </Layout>
-);
+export const FieldGroup = ({ model }: Props) => {
+  const [isFolded, setBeFolded] = useState(true);
+
+  const toggleToFold = () => setBeFolded(isFolded => !isFolded);
+
+  return (
+    <Layout>
+      <HeadingContainer>
+        <FoldButton onClick={toggleToFold}>
+          <FoldIcon src={isFolded ? ChevronBottomIcon : ChevronUpIcon} />
+        </FoldButton>
+        <Heading placeholder="그룹" />
+      </HeadingContainer>
+
+      {isFolded && (
+        <FieldList>
+          {model.fieldList.map((field, index) => (
+            <Field key={index} model={field} />
+          ))}
+        </FieldList>
+      )}
+    </Layout>
+  );
+};

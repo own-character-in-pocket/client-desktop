@@ -41,6 +41,8 @@ const TextInput = styled.input`
 
 const ImageInput = styled.input`
   cursor: pointer;
+
+  width: 100%;
 `;
 
 export const Thumbnail = () => (
@@ -50,7 +52,7 @@ export const Thumbnail = () => (
     </Left>
     <Right>
       <div>카드 타입</div>
-      <Autocomplete />
+      <Autocomplete placeholder="카드 타입" />
       <div>카드 이름</div>
       <TextInput placeholder="Danuel" />
       <div>배경색</div>

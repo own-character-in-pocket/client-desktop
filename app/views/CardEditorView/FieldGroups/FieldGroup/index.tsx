@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { CardFieldGroupModel } from '@app/models/CardFieldGroup';
-import { Field } from './Field';
 import ChevronBottomIcon from '@app/assets/icons/chevron-bottom.svg';
 import ChevronUpIcon from '@app/assets/icons/chevron-up.svg';
+import { FieldGroupModel } from '@app/models';
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { Field } from './Field';
 
 const Layout = styled.div`
   padding: 0.5rem;
@@ -44,7 +44,7 @@ const FieldList = styled.div`
 `;
 
 type Props = {
-  model: CardFieldGroupModel;
+  model: FieldGroupModel;
 };
 
 export const FieldGroup = ({ model }: Props) => {

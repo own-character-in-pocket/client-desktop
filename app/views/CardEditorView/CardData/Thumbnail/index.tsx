@@ -1,5 +1,5 @@
 import { Autocomplete } from '@app/atomics/Autocomplete';
-import { CardModel } from '@app/models/Card';
+import { EntityModel } from '@app/models';
 import { SimpleCard } from '@app/molecules/SimpleCard';
 import React from 'react';
 import styled from 'styled-components';
@@ -48,7 +48,7 @@ const ImageInput = styled.input`
 export const Thumbnail = () => (
   <Layout>
     <Left>
-      <SimpleCard model={CardModel.of({ displayName: 'Danuel' })} />
+      <SimpleCard model={EntityModel.of({ displayName: 'Danuel' })} />
     </Left>
     <Right>
       <div>카드 타입</div>

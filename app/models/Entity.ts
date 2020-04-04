@@ -2,13 +2,14 @@ import EggIcon from '@app/assets/icons/egg.svg';
 import { Time } from '@app/utils/time';
 import { Exclude, Expose, plainToClass, Transform } from 'class-transformer';
 import { immerable } from 'immer';
+import { FieldGroupModel } from './FieldGroup';
 
 const DEFAULT_BACKGROUND_COLOR = 'hsl(210, 100%, 84%)';
 
 @Exclude()
-export class CardModel {
+export class EntityModel {
   static of(source: any) {
-    return plainToClass(CardModel, source || {});
+    return plainToClass(EntityModel, source || {});
   }
 
   readonly [immerable] = true;
@@ -39,6 +40,10 @@ export class CardModel {
   tagList!: string[];
 
   @Expose()
-  @Transform((value = []) => value.map(CardModel.of))
-  relationshipList!: CardModel[];
+  @Transform((value = []) => value.map(EntityModel.of))
+  relationshipList!: EntityModel[];
+
+  @Expose()
+  @Transform((value = []) => value.map(FieldGroupModel.of))
+  fieldGroupList!: FieldGroupModel;
 }

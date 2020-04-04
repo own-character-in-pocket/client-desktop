@@ -1,9 +1,9 @@
-import { Autocomplete } from '@app/atomics/Autocomplete';
-import { CardFieldModel } from '@app/models/CardField';
-import React from 'react';
-import styled from 'styled-components';
 import CrossBlackIcon from '@app/assets/icons/cross-black.svg';
 import CrossRedIcon from '@app/assets/icons/cross-red.svg';
+import { Autocomplete } from '@app/atomics/Autocomplete';
+import { FieldModel } from '@app/models';
+import React from 'react';
+import styled from 'styled-components';
 
 const Layout = styled.div`
   display: grid;
@@ -32,7 +32,7 @@ const DeleteIcon = styled.img`
 `;
 
 type Props = {
-  model: CardFieldModel;
+  model: FieldModel;
 };
 
 export const Field = ({ model }: Props) => (

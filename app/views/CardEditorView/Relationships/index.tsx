@@ -1,4 +1,4 @@
-import { CardModel } from '@app/models/Card';
+import { EntityModel } from '@app/models';
 import { SimpleCard } from '@app/molecules/SimpleCard';
 import React from 'react';
 import styled from 'styled-components';
@@ -17,7 +17,7 @@ const RelationshipList = styled.div`
 export const Relationships = () => {
   const cardList = useSelector(store => store.Card.current.relationshipList);
 
-  const updateRelationship = (card: CardModel) => {
+  const updateRelationship = (card: EntityModel) => {
     console.log(card);
   };
 

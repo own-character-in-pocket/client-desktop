@@ -1,6 +1,6 @@
 import { Card } from '@app/atomics/Card';
 import { Lineclamp } from '@app/atomics/Lineclamp';
-import { CardModel } from '@app/models/Card';
+import { EntityModel } from '@app/models';
 import HumanIcon from 'assets/icons/human.svg';
 import React from 'react';
 import styled from 'styled-components';
@@ -40,7 +40,7 @@ const CardType = styled.img`
 `;
 
 type Props = {
-  model: CardModel;
+  model: EntityModel;
   onClick?: () => void;
 };
 

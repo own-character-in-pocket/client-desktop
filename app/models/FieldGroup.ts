@@ -1,10 +1,10 @@
 import { Exclude, Expose, plainToClass, Transform } from 'class-transformer';
-import { CardFieldModel } from './CardField';
+import { FieldModel } from './Field';
 
 @Exclude()
-export class CardFieldGroupModel {
+export class FieldGroupModel {
   static of(source: any) {
-    return plainToClass(CardFieldGroupModel, source || {});
+    return plainToClass(FieldGroupModel, source || {});
   }
 
   @Expose()
@@ -20,6 +20,6 @@ export class CardFieldGroupModel {
   order!: number;
 
   @Expose()
-  @Transform((value = [null, null, null]) => value.map(CardFieldModel.of))
-  fieldList!: CardFieldModel[];
+  @Transform((value = [null, null, null]) => value.map(FieldModel.of))
+  fieldList!: FieldModel[];
 }

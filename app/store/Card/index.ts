@@ -1,9 +1,9 @@
-import { CardModel } from '@app/models/Card';
+import { EntityModel } from '@app/models';
 import { createDuck } from '@app/utils/store';
 
 const createInitialState = () => ({
   list: [
-    CardModel.of({
+    EntityModel.of({
       id: 0,
       displayName: 'Danuel',
       backgroundColor: 'hsl(210, 100%, 84%)',
@@ -12,8 +12,8 @@ const createInitialState = () => ({
         { displayName: 'Danuel', backgroundColor: 'hsl(330, 100%, 84%)' }
       ]
     }),
-    CardModel.of({ id: 1, displayName: 'Danuel', backgroundColor: 'hsl(0, 100%, 84%)' }),
-    CardModel.of({ id: 2, displayName: 'Danuel', backgroundColor: 'hsl(330, 100%, 84%)' })
+    EntityModel.of({ id: 1, displayName: 'Danuel', backgroundColor: 'hsl(0, 100%, 84%)' }),
+    EntityModel.of({ id: 2, displayName: 'Danuel', backgroundColor: 'hsl(330, 100%, 84%)' })
   ]
 });
 
@@ -21,10 +21,10 @@ export const CardAction = createDuck({
   namespace: 'Card',
   createInitialState,
   reducers: {
-    add(state, character: CardModel) {
+    add(state, character: EntityModel) {
       state.list.push(character);
     },
-    remove(state, character: CardModel) {
+    remove(state, character: EntityModel) {
       state.list = state.list.filter(({ id }) => character.id === id);
     }
   }

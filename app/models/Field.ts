@@ -1,9 +1,9 @@
 import { Exclude, Expose, plainToClass } from 'class-transformer';
 
 @Exclude()
-export class CardFieldModel {
+export class FieldModel {
   static of(source: any) {
-    return plainToClass(CardFieldModel, source || {});
+    return plainToClass(FieldModel, source || {});
   }
 
   @Expose()

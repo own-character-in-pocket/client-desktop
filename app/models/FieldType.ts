@@ -3,9 +3,9 @@ import { Exclude, Expose, plainToClass, Transform } from 'class-transformer';
 import { immerable } from 'immer';
 
 @Exclude()
-export class CardTypeModel {
+export class FieldTypeModel {
   static of(source: any) {
-    return plainToClass(CardTypeModel, source || {});
+    return plainToClass(FieldTypeModel, source || {});
   }
 
   readonly [immerable] = true;

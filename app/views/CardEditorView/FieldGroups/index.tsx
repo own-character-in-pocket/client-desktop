@@ -1,12 +1,12 @@
+import { FieldGroupModel } from '@app/models';
 import React from 'react';
 import styled from 'styled-components';
 import { FieldGroup } from './FieldGroup';
-import { CardFieldGroupModel } from '@app/models/CardFieldGroup';
 
 const Layout = styled.div``;
 
 export const FieldGroups = () => {
-  const fieldGroupList = Array.from({ length: 3 }, (_, index) => CardFieldGroupModel.of({ id: index }));
+  const fieldGroupList = Array.from({ length: 3 }, (_, index) => FieldGroupModel.of({ id: index }));
   return (
     <Layout>
       {fieldGroupList.map(fieldGroup => (

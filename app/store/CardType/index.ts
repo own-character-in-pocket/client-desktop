@@ -1,8 +1,8 @@
-import { CardTypeModel } from '@app/models/CardType';
+import { FieldTypeModel } from '@app/models';
 import { createDuck } from '@app/utils/store';
 
 const createInitialState = () => ({
-  map: new Map<number, CardTypeModel>()
+  map: new Map<number, FieldTypeModel>()
 });
 
 export const CardTypeAction = createDuck({
@@ -12,7 +12,7 @@ export const CardTypeAction = createDuck({
     clear(state) {
       state.map.clear();
     },
-    add(state, cardType: CardTypeModel) {
+    add(state, cardType: FieldTypeModel) {
       state.map.set(cardType.id, cardType);
     },
     remove(state, id: number) {

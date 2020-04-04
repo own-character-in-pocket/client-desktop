@@ -1,8 +1,8 @@
-import { CardModel } from '@app/models/Card';
+import { EntityModel } from '@app/models';
 import { createDuck } from '@app/utils/store';
 
 const createInitialState = () => ({
-  current: CardModel.of({
+  current: EntityModel.of({
     displayName: 'Danuel',
     backgroundColor: 'hsl(210, 100%, 84%)',
     relationshipList: [
@@ -16,7 +16,7 @@ export const CardAction = createDuck({
   namespace: 'Card',
   createInitialState,
   reducers: {
-    reset(state, character: CardModel) {
+    reset(state, character: EntityModel) {
       state.current = character;
     },
     setCardTypeId(state, cardTypeId: number) {

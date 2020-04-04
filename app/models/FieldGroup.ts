@@ -1,4 +1,5 @@
 import { Exclude, Expose, plainToClass, Transform } from 'class-transformer';
+import { immerable } from 'immer';
 import { FieldModel } from './Field';
 
 @Exclude()
@@ -7,6 +8,8 @@ export class FieldGroupModel {
     return plainToClass(FieldGroupModel, source || {});
   }
 
+  readonly [immerable] = true;
+
   @Expose()
   id!: number;
 
@@ -14,12 +17,13 @@ export class FieldGroupModel {
   cardId!: number;
 
   @Expose()
+  @Transform((value = '') => value)
   displayName!: string;
 
   @Expose()
   order!: number;
 
   @Expose()
-  @Transform((value = [null, null, null]) => value.map(FieldModel.of))
+  @Transform((value = [null]) => value.map(FieldModel.of))
   fieldList!: FieldModel[];
 }

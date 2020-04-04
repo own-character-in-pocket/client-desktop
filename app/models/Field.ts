@@ -1,10 +1,14 @@
-import { Exclude, Expose, plainToClass } from 'class-transformer';
+import { InputType } from '@app/constants/InputType';
+import { Exclude, Expose, plainToClass, Transform } from 'class-transformer';
+import { immerable } from 'immer';
 
 @Exclude()
 export class FieldModel {
   static of(source: any) {
     return plainToClass(FieldModel, source || {});
   }
+
+  readonly [immerable] = true;
 
   @Expose()
   id!: number;
@@ -13,12 +17,15 @@ export class FieldModel {
   groupId!: number;
 
   @Expose()
+  @Transform((value = '') => value)
   displayName!: string;
 
   @Expose()
-  type!: string;
+  @Transform((value = InputType.Text) => value)
+  type!: InputType;
 
   @Expose()
+  @Transform((value = '') => value)
   value!: string;
 
   @Expose()

@@ -1,9 +1,8 @@
-import ChevronBottomIcon from '@app/assets/icons/chevron-bottom.svg';
-import ChevronUpIcon from '@app/assets/icons/chevron-up.svg';
 import { FieldGroupModel } from '@app/models';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Field } from './Field';
+import { FieldHeading } from './FieldHeading';
 
 const Layout = styled.div`
   padding: 0.5rem;
@@ -16,26 +15,6 @@ const Layout = styled.div`
   }
 `;
 
-const HeadingContainer = styled.div``;
-
-const FoldButton = styled.button``;
-
-const FoldIcon = styled.img`
-  width: 1.5rem;
-  height: 1.5rem;
-`;
-
-const Heading = styled.input`
-  margin-left: 0.5rem;
-  padding: 0 0.25rem;
-
-  font-size: 1.25rem;
-  font-weight: bolder;
-  border-radius: 0.25rem;
-  box-shadow: inset 0 0 0 1px hsl(0, 0%, 84%);
-  background-color: white;
-`;
-
 const FieldList = styled.div`
   display: grid;
   grid-gap: 0.5rem;
@@ -44,27 +23,23 @@ const FieldList = styled.div`
 `;
 
 type Props = {
+  index: number;
+  isAlone: boolean;
   model: FieldGroupModel;
 };
 
-export const FieldGroup = ({ model }: Props) => {
+export const FieldGroup = ({ index: groupIndex, isAlone, model }: Props) => {
   const [isFolded, setBeFolded] = useState(true);
 
   const toggleToFold = () => setBeFolded(isFolded => !isFolded);
 
   return (
     <Layout>
-      <HeadingContainer>
-        <FoldButton onClick={toggleToFold}>
-          <FoldIcon src={isFolded ? ChevronBottomIcon : ChevronUpIcon} />
-        </FoldButton>
-        <Heading placeholder="그룹" />
-      </HeadingContainer>
-
+      <FieldHeading index={groupIndex} displayName={model.displayName} isFolded={isFolded} isAlone={isAlone} toggleToFold={toggleToFold} />
       {isFolded && (
         <FieldList>
           {model.fieldList.map((field, index) => (
-            <Field key={index} model={field} />
+            <Field key={index} groupIndex={groupIndex} index={index} isAlone={model.fieldList.length === 1} model={field} />
           ))}
         </FieldList>
       )}

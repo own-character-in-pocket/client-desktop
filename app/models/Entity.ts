@@ -45,5 +45,5 @@ export class EntityModel {
 
   @Expose()
   @Transform((value = []) => value.map(FieldGroupModel.of))
-  fieldGroupList!: FieldGroupModel;
+  fieldGroupList!: FieldGroupModel[];
 }

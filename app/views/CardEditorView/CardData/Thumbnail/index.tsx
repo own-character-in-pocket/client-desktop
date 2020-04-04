@@ -18,7 +18,7 @@ const Right = styled.div`
   display: grid;
   grid-column-gap: 1rem;
   grid-row-gap: 0.5rem;
-  grid-template-columns: min-content 1fr;
+  grid-template-columns: max-content 1fr;
 
   height: min-content;
 
@@ -56,7 +56,7 @@ export const Thumbnail = () => (
       <div>카드 이름</div>
       <TextInput placeholder="Danuel" />
       <div>배경색</div>
-      <TextInput value="hsl(210, 100%, 84%)" />
+      <TextInput placeholder="hsl(210, 100%, 84%)" />
       <div>이미지</div>
       <ImageInput type="file" />
     </Right>

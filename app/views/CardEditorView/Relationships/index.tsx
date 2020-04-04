@@ -15,7 +15,7 @@ const RelationshipList = styled.div`
 `;
 
 export const Relationships = () => {
-  const cardList = useSelector(store => store.Card.current.relationshipList);
+  const cardList = useSelector(store => store.Entity.current.relationshipList);
 
   const updateRelationship = (card: EntityModel) => {
     console.log(card);

@@ -1,7 +1,8 @@
-import { createStore, combineReducers } from '@app/utils/store';
-import { CardAction as Card } from './Card';
+import { combineReducers, createStore } from '@app/utils/store';
+import { EntityAction as Entity } from './Entity';
+import { ModeAction as Mode } from './Mode';
 
-const reducers = { Card };
+const reducers = { Entity, Mode };
 
 const reducer = combineReducers(reducers);
 

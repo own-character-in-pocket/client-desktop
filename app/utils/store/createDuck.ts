@@ -14,7 +14,7 @@ interface Action<P> {
   readonly payload: P;
 }
 
-type Actions<S, R extends Record<string, (state: S, payload: any) => void>> = {
+export type Actions<S, R extends Record<string, (state: S, payload: any) => void>> = {
   readonly [key in keyof R]: R[key] extends (state: S) => void
     ? () => Action<void>
     : R[key] extends (state: S, payload: infer P) => void

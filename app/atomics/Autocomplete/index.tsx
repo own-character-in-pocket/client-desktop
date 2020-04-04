@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import ReactSelect, { InputActionMeta, components } from 'react-select';
-import { None } from '../None';
 import ChevronBottom from '@app/assets/icons/chevron-bottom.svg';
+import React from 'react';
+import ReactSelectNoncreatable, { components, InputActionMeta } from 'react-select';
+import ReactSelectCreatable from 'react-select/creatable';
 import styled from 'styled-components';
+import { None } from '../None';
 
 const Image = styled.img`
   width: 1.5rem;
@@ -17,22 +18,27 @@ type Option = any;
 
 type Props = {
   className?: string;
+  isCreateable?: boolean;
   placeholder?: string;
+  inputValue?: string;
   defaultOption?: Option;
   options?: Option[];
   onInputChange?: (inputValue: string) => void;
   onChange?: (option: Option) => void;
 };
 
-export const Autocomplete = ({ className, placeholder, defaultOption, options, onInputChange = NO_OPERATION, onChange }: Props) => {
-  const [inputValue, setInputValue] = useState('');
-
+export const Autocomplete = ({
+  className,
+  isCreateable,
+  placeholder,
+  inputValue,
+  defaultOption,
+  options,
+  onInputChange = NO_OPERATION,
+  onChange
+}: Props) => {
   const updateInputValue = (inputValue: string, actionMeta: InputActionMeta) => {
     switch (actionMeta.action) {
-      case 'input-change': {
-        setInputValue(inputValue);
-        return;
-      }
       case 'set-value': {
         onInputChange(inputValue);
         return;
@@ -40,14 +46,18 @@ export const Autocomplete = ({ className, placeholder, defaultOption, options, o
     }
   };
 
+  const ReactSelect: typeof ReactSelectNoncreatable = isCreateable ? (ReactSelectCreatable as any) : ReactSelectNoncreatable;
+
   return (
     <ReactSelect
       className={className}
       isClearable={false}
       placeholder={placeholder}
       value={defaultOption}
-      options={options}
       inputValue={inputValue}
+      options={options}
+      onInputChange={updateInputValue}
+      onChange={onChange}
       components={{
         IndicatorSeparator: None,
         DropdownIndicator: (props: any) => (
@@ -74,9 +84,14 @@ export const Autocomplete = ({ className, placeholder, defaultOption, options, o
           margin: 0,
           padding: '0 0.25rem'
         }),
+        singleValue: style => ({
+          ...style,
+          margin: 0,
+          padding: '0 0.25rem'
+        }),
         valueContainer: style => ({
           ...style,
-          padding: 0
+          padding: '0 0.25rem'
         }),
         dropdownIndicator: style => ({
           ...style,
@@ -87,10 +102,13 @@ export const Autocomplete = ({ className, placeholder, defaultOption, options, o
           ...style,
           padding: '0 0.25rem',
           textAlign: 'initial'
+        }),
+        option: style => ({
+          ...style,
+          padding: '0 0.25rem',
+          textAlign: 'initial'
         })
       }}
-      onInputChange={updateInputValue}
-      onChange={onChange}
     />
   );
 };

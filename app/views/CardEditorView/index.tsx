@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { CardData } from './CardData';
+import { CardInformation } from './CardInformation';
 import { FieldGroups } from './FieldGroups';
 import { Relationships } from './Relationships';
 import { StoreProvider } from './Store';
@@ -29,7 +29,7 @@ export const CardEditorView = () => (
   <StoreProvider>
     <Layout>
       <Top>
-        <CardData />
+        <CardInformation />
       </Top>
 
       <Center>

@@ -2,8 +2,6 @@ import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 
 const Layout = styled.div`
-  overflow: hidden;
-
   padding-left: 4rem;
 
   white-space: normal;

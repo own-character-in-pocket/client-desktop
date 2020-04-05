@@ -26,6 +26,8 @@ const Right = styled.div`
 
   border-radius: 0.25rem;
 
+  transition-property: background-color;
+
   &:hover {
     background-color: hsl(0, 0%, 96%);
   }

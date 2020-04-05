@@ -4,7 +4,7 @@ import { Thumbnail } from './Thumbnail';
 
 const Layout = styled.div``;
 
-export const CardData = () => (
+export const CardInformation = () => (
   <Layout>
     <Thumbnail />
   </Layout>

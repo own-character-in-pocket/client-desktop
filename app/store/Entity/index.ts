@@ -17,8 +17,8 @@ const createInitialState = () => ({
   ]
 });
 
-export const CardAction = createDuck({
-  namespace: 'Card',
+export const EntityAction = createDuck({
+  namespace: 'Entity',
   createInitialState,
   reducers: {
     add(state, character: EntityModel) {

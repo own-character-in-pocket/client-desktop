@@ -9,8 +9,9 @@ const Layout = styled.div`
 
   border-radius: 0.25rem;
 
+  transition-property: background-color;
+
   &:hover {
-    border-radius: 0.25rem;
     background-color: hsl(0, 0%, 96%);
   }
 `;

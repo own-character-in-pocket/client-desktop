@@ -17,7 +17,7 @@ const Layout = styled.div`
 
 export const Cards = () => {
   const history = useHistory();
-  const [cardList, dispatch] = useAppStore(store => store.Card.list);
+  const [entityList, dispatch] = useAppStore(store => store.Entity.list);
 
   const moveToCharacterEditor = (id: number) => {
     dispatch(SidebarAction.addCharacter(id));
@@ -26,12 +26,12 @@ export const Cards = () => {
     history.push(path);
   };
 
-  console.log(cardList);
+  console.log(entityList);
 
   return (
     <Layout>
-      {cardList.map((card, index) => (
-        <SimpleCard key={index} model={card} onClick={() => moveToCharacterEditor(card.id)} />
+      {entityList.map((entity, index) => (
+        <SimpleCard key={index} model={entity} onClick={() => moveToCharacterEditor(entity.id)} />
       ))}
     </Layout>
   );

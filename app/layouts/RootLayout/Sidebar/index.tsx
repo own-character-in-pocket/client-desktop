@@ -116,11 +116,11 @@ const Separator = styled.hr`
 
 export const Sidebar = () => {
   const history = useHistory();
-  const [cardList, dispatch] = useAppStore(store => store.Card.list.filter(card => store.Sidebar.cards.has(card.id)));
+  const [entityList, dispatch] = useAppStore(store => store.Entity.list.filter(entity => store.Sidebar.cards.has(entity.id)));
 
-  const hasActiveCharacter = !!cardList.length;
+  const hasActiveCharacter = !!entityList.length;
 
-  const closeProfileEditorById = (id: string) => {
+  const closeProfileEditorById = (id: number) => {
     dispatch(SidebarAction.removeCharacter(id));
 
     const currentPath = history.location.pathname;
@@ -141,11 +141,11 @@ export const Sidebar = () => {
       {hasActiveCharacter && (
         <>
           <Separator />
-          {cardList.map(card => {
-            const to = compile(CARD_EDITOR_VIEW)({ id: card.id.toString() });
+          {entityList.map(entity => {
+            const to = compile(CARD_EDITOR_VIEW)({ id: entity.id.toString() });
             return (
-              <ProfileAnchor key={card.id} to={to} style={{ backgroundColor: card.backgroundColor }}>
-                <CloseButton src={CrossBlackIcon} onClick={event => (event.preventDefault(), closeProfileEditorById(card.id))} />
+              <ProfileAnchor key={entity.id} to={to} style={{ backgroundColor: entity.backgroundColor }}>
+                <CloseButton src={CrossBlackIcon} onClick={event => (event.preventDefault(), closeProfileEditorById(entity.id))} />
                 <Image src={EggIcon} />
                 <CardType src={HumanIcon} />
               </ProfileAnchor>

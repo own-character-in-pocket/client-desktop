@@ -5,15 +5,15 @@ const createInitialState = () => ({
   map: new Map<number, FieldTypeModel>()
 });
 
-export const CardTypeAction = createDuck({
-  namespace: 'CardType',
+export const FieldTypeAction = createDuck({
+  namespace: 'FieldType',
   createInitialState,
   reducers: {
     clear(state) {
       state.map.clear();
     },
-    add(state, cardType: FieldTypeModel) {
-      state.map.set(cardType.id, cardType);
+    add(state, entityType: FieldTypeModel) {
+      state.map.set(entityType.id, entityType);
     },
     remove(state, id: number) {
       state.map.delete(id);

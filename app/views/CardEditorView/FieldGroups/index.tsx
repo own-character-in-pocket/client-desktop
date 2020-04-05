@@ -7,7 +7,14 @@ import { ModeAction } from '../Store/Mode';
 const Layout = styled.div``;
 
 const ToggleMode = styled.div`
+  z-index: 1;
+
   position: sticky;
+  top: 0;
+
+  padding: 0.5rem 0.25rem;
+
+  background-color: white;
 `;
 
 const ToggleButton = styled.button`
@@ -34,9 +41,7 @@ const ToggleToRemoveableButton = styled(ToggleButton)`
   }
 `;
 
-const FieldGroupListContainer = styled.div`
-  margin-top: 0.5rem;
-`;
+const FieldGroupListContainer = styled.div``;
 
 export const FieldGroups = () => {
   const [{ isRemoveable, fieldGroupList }, dispatch] = useStore(store => ({

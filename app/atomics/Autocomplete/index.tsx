@@ -71,23 +71,21 @@ export const Autocomplete = ({
           ...style,
           cursor: 'text',
           minHeight: 'initial',
+          height: '1.5rem',
           border: 0,
           boxShadow: 'inset 0 0 0 1px hsl(0, 0%, 84%)'
         }),
         placeholder: style => ({
           ...style,
-          margin: 0,
-          padding: '0 0.25rem'
+          margin: 0
         }),
         input: style => ({
           ...style,
-          margin: 0,
-          padding: '0 0.25rem'
+          margin: 0
         }),
         singleValue: style => ({
           ...style,
-          margin: 0,
-          padding: '0 0.25rem'
+          margin: 0
         }),
         valueContainer: style => ({
           ...style,

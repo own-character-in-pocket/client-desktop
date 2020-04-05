@@ -38,14 +38,15 @@ const InputTable = {
 type Props = {
   type: keyof typeof InputTable;
   value: any;
+  isReadonly: boolean;
   onChange: (value: any) => void;
 };
 
-export const FieldInput = ({ type, value, onChange }: Props) => {
+export const FieldInput = ({ type, value, isReadonly, onChange }: Props) => {
   const Input = InputTable[type as keyof typeof InputTable] || UnknownInput;
   return (
     <Layout>
-      <Input value={value} onChange={onChange} />
+      <Input value={value} isReadonly={isReadonly} onChange={onChange} />
     </Layout>
   );
 };

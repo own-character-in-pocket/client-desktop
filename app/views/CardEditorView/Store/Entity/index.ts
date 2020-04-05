@@ -90,8 +90,10 @@ export const EntityAction = createDuck({
     setFieldType(state, payload: { groupIndex: number; index: number; type: InputType }) {
       const fieldGroup = state.current.fieldGroupList[payload.groupIndex];
       const field = fieldGroup.fieldList[payload.index];
-      field.type = payload.type;
-      field.value = getDefaultValue(payload.type);
+      if (field.type !== payload.type) {
+        field.type = payload.type;
+        field.value = getDefaultValue(payload.type);
+      }
     },
     setFieldDisplayName(state, payload: { groupIndex: number; index: number; displayName: string }) {
       const fieldGroup = state.current.fieldGroupList[payload.groupIndex];

@@ -58,7 +58,7 @@ type Props = {
 };
 
 export const FieldHeading = ({ index, displayName, isFolded, isAlone, toggleToFold }: Props) => {
-  const [isRemoveable, dispatch] = useStore(store => store.Mode.isRemoveable);
+  const [currentMode, dispatch] = useStore(store => store.Mode.current);
 
   const setDisplayName = (event: ChangeEvent<HTMLInputElement>) => {
     const displayName = event.target.value;
@@ -79,12 +79,12 @@ export const FieldHeading = ({ index, displayName, isFolded, isAlone, toggleToFo
         <FoldIcon src={isFolded ? ChevronBottomIcon : ChevronUpIcon} />
       </Button>
       <Heading type="text" placeholder="그룹" value={displayName} onChange={setDisplayName} />
-      {!isRemoveable && (
+      {currentMode.isAdd && (
         <Button onClick={addFieldGroup}>
           <AddButton src={PlusBlackIcon} />
         </Button>
       )}
-      {!isAlone && isRemoveable && (
+      {!isAlone && currentMode.isRemove && (
         <Button onClick={removeFieldGroup}>
           <DeleteButton src={CrossBlackIcon} />
         </Button>

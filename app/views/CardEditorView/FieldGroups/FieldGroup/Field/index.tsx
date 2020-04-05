@@ -16,6 +16,10 @@ const Layout = styled.div`
   grid-gap: 0.5rem;
   grid-template-columns: 16ch 16ch 1fr 1.5rem;
   align-items: flex-start;
+
+  &[data-mode='View'] {
+    grid-template-columns: 12ch 1fr;
+  }
 `;
 
 const TextInput = styled.input`
@@ -73,7 +77,7 @@ type Props = {
 };
 
 export const Field = ({ groupIndex, index, isAlone, model }: Props) => {
-  const [isRemoveable, dispatch] = useStore(store => store.Mode.isRemoveable);
+  const [currentMode, dispatch] = useStore(store => store.Mode.current);
 
   const selectType = (option: { value: InputType }) => {
     dispatch(EntityAction.setFieldType({ groupIndex, index, type: option.value }));
@@ -97,12 +101,14 @@ export const Field = ({ groupIndex, index, isAlone, model }: Props) => {
   };
 
   return (
-    <Layout>
-      <Autocomplete placeholder="속성 타입" defaultOption={InputTypeTable[model.type]} options={InputTypeList} onChange={selectType} />
-      <TextInput placeholder="속성 이름" value={model.displayName} onChange={setDisplayName} />
-      <FieldInput type={model.type} value={model.value} onChange={setValue} />
-      {!isRemoveable && <AddButton src={PlusBlackIcon} onClick={addField} />}
-      {!isAlone && isRemoveable && <DeleteButton src={CrossBlackIcon} onClick={removeField} />}
+    <Layout data-mode={currentMode.state}>
+      {!currentMode.isView && (
+        <Autocomplete placeholder="속성 타입" defaultOption={InputTypeTable[model.type]} options={InputTypeList} onChange={selectType} />
+      )}
+      <TextInput placeholder="속성 이름" readOnly={currentMode.isView} value={model.displayName} onChange={setDisplayName} />
+      <FieldInput type={model.type} value={model.value} isReadonly={currentMode.isView} onChange={setValue} />
+      {currentMode.isAdd && <AddButton src={PlusBlackIcon} onClick={addField} />}
+      {!isAlone && currentMode.isRemove && <DeleteButton src={CrossBlackIcon} onClick={removeField} />}
     </Layout>
   );
 };

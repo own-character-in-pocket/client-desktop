@@ -22,46 +22,34 @@ const ToggleButton = styled.button`
 
   border-radius: 0.25rem;
   box-shadow: 0 0 0 1px hsl(0, 0%, 84%);
-
-  &:hover {
-    color: white;
-  }
-`;
-
-const ToggleToUnremoveableButton = styled(ToggleButton)`
-  &:hover {
-    background-color: hsl(0, 100%, 64%);
-  }
-`;
-
-const ToggleToRemoveableButton = styled(ToggleButton)`
-  &:hover {
-    color: white;
-    background-color: hsl(210, 100%, 64%);
-  }
 `;
 
 const FieldGroupListContainer = styled.div``;
 
 export const FieldGroups = () => {
-  const [{ isRemoveable, fieldGroupList }, dispatch] = useStore(store => ({
-    isRemoveable: store.Mode.isRemoveable,
+  const [{ currentMode, fieldGroupList }, dispatch] = useStore(store => ({
+    currentMode: store.Mode.current,
     fieldGroupList: store.Entity.current.fieldGroupList
   }));
 
-  const setRemoveable = () => {
-    dispatch(ModeAction.setRemoveable(true));
+  const setViewMode = () => {
+    dispatch(ModeAction.setView());
   };
 
-  const setUnremoveable = () => {
-    dispatch(ModeAction.setRemoveable(false));
+  const setAddMode = () => {
+    dispatch(ModeAction.setAdd());
+  };
+
+  const setRemoveMode = () => {
+    dispatch(ModeAction.setRemove());
   };
 
   return (
     <Layout>
       <ToggleMode>
-        {isRemoveable && <ToggleToUnremoveableButton onClick={setUnremoveable}>제거 모드</ToggleToUnremoveableButton>}
-        {!isRemoveable && <ToggleToRemoveableButton onClick={setRemoveable}>추가 모드</ToggleToRemoveableButton>}
+        {currentMode.isView && <ToggleButton onClick={setAddMode}>보기 모드</ToggleButton>}
+        {currentMode.isAdd && <ToggleButton onClick={setRemoveMode}>추가 모드</ToggleButton>}
+        {currentMode.isRemove && <ToggleButton onClick={setViewMode}>제거 모드</ToggleButton>}
       </ToggleMode>
       <FieldGroupListContainer>
         {fieldGroupList.map((fieldGroup, index) => (

@@ -14,5 +14,5 @@ export const TextInput = ({ value, onChange }: Props) => {
     onChange(value);
   };
 
-  return <Layout value={value} onChange={updateText} />;
+  return <Layout type="text" value={value} onChange={updateText} />;
 };

@@ -29,23 +29,21 @@ const Heading = styled.input`
   background-color: white;
 `;
 
-const AddButton = styled.img`
+const Image = styled.img`
   width: 1.5rem;
   height: 1.5rem;
 
   margin-left: 0.5rem;
+  padding: 0.25rem;
+`;
 
+const AddButton = styled(Image)`
   &:hover {
     content: url(${PlusBlueIcon});
   }
 `;
 
-const DeleteButton = styled.img`
-  width: 1.5rem;
-  height: 1.5rem;
-
-  margin-left: 0.5rem;
-
+const DeleteButton = styled(Image)`
   &:hover {
     content: url(${CrossRedIcon});
   }

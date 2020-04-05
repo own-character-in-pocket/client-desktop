@@ -89,15 +89,33 @@ export const EntityAction = createDuck({
     },
     setFieldType(state, payload: { groupIndex: number; index: number; type: InputType }) {
       const fieldGroup = state.current.fieldGroupList[payload.groupIndex];
-      fieldGroup.fieldList[payload.index].type = payload.type;
+      const field = fieldGroup.fieldList[payload.index];
+      field.type = payload.type;
+      field.value = getDefaultValue(payload.type);
     },
     setFieldDisplayName(state, payload: { groupIndex: number; index: number; displayName: string }) {
       const fieldGroup = state.current.fieldGroupList[payload.groupIndex];
-      fieldGroup.fieldList[payload.index].displayName = payload.displayName;
+      const field = fieldGroup.fieldList[payload.index];
+      field.displayName = payload.displayName;
     },
     setFieldValue(state, payload: { groupIndex: number; index: number; value: any }) {
       const fieldGroup = state.current.fieldGroupList[payload.groupIndex];
-      fieldGroup.fieldList[payload.index].value = payload.value;
+      const field = fieldGroup.fieldList[payload.index];
+      field.value = payload.value;
     }
   }
 });
+
+const getDefaultValue = (type: InputType) => {
+  switch (type) {
+    case InputType.Multiline: {
+      return '';
+    }
+    case InputType.Number: {
+      return 0;
+    }
+    case InputType.Text: {
+      return '';
+    }
+  }
+};

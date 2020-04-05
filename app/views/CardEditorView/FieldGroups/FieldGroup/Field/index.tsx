@@ -14,11 +14,13 @@ import { FieldInput } from './FieldInput';
 const Layout = styled.div`
   display: grid;
   grid-gap: 0.5rem;
-  grid-template-columns: 12ch 12ch 1fr 1rem;
-  align-items: center;
+  grid-template-columns: 16ch 16ch 1fr 1.5rem;
+  align-items: flex-start;
 `;
 
 const TextInput = styled.input`
+  height: 1.5rem;
+
   padding: 0 0.25rem;
 
   border-radius: 0.25rem;
@@ -29,8 +31,10 @@ const TextInput = styled.input`
 const AddButton = styled.img`
   cursor: pointer;
 
-  width: 1rem;
-  height: 1rem;
+  width: 1.5rem;
+  height: 1.5rem;
+
+  padding: 0.25rem;
 
   &:hover {
     content: url(${PlusBlueIcon});
@@ -40,15 +44,21 @@ const AddButton = styled.img`
 const DeleteButton = styled.img`
   cursor: pointer;
 
-  width: 1rem;
-  height: 1rem;
+  width: 1.5rem;
+  height: 1.5rem;
+
+  padding: 0.25rem;
 
   &:hover {
     content: url(${CrossRedIcon});
   }
 `;
 
-const InputTypeList = [{ value: InputType.Text, label: '텍스트' }];
+const InputTypeList = [
+  { value: InputType.Text, label: '텍스트(한 줄)' },
+  { value: InputType.Multiline, label: '텍스트(여러 줄)' },
+  { value: InputType.Number, label: '숫자' }
+];
 
 const InputTypeTable = InputTypeList.reduce((table, inputType) => {
   table[inputType.value] = inputType;

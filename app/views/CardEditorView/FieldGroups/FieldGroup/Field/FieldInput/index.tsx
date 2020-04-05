@@ -1,14 +1,15 @@
+import { InputType } from '@app/constants/InputType';
 import React from 'react';
+import styled from 'styled-components';
 // import { ColorInput } from './ColorInput';
 // import { ColorPalletteInput } from './ColorPalletteInput';
 // import { EmailInput } from './EmailInput';
 // import { ImageInput } from './ImageInput';
+import { MultilineInput } from './MultilineInput';
 // import { LinkInput } from './LinkInput';
-// import { NumberInput } from './NumberInput';
+import { NumberInput } from './NumberInput';
 import { TextInput } from './TextInput';
 import { UnknownInput } from './UnknownInput';
-import styled from 'styled-components';
-import { InputType } from '@app/constants/InputType';
 
 const Layout = styled.div`
   padding: 0 0.25rem;
@@ -19,16 +20,18 @@ const Layout = styled.div`
 
   input {
     width: 100%;
+    min-height: 1.5rem;
   }
 `;
 
 const InputTable = {
+  [InputType.Multiline]: MultilineInput,
+  [InputType.Number]: NumberInput,
   [InputType.Text]: TextInput
   // EmailInput,
   // LinkInput,
   // ColorInput,
   // ImageInput,
-  // NumberInput,
   // ColorPalletteInput
 };
 

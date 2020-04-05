@@ -26,7 +26,7 @@ export class FieldModel {
 
   @Expose()
   @Transform((value = '') => value)
-  value!: string;
+  value!: any;
 
   @Expose()
   order!: number;

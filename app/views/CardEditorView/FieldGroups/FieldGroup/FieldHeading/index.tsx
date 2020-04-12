@@ -19,14 +19,19 @@ const FoldIcon = styled.img`
 `;
 
 const Heading = styled.input`
+  width: 258px;
+
   margin-left: 0.625rem;
   padding: 0 0.25rem;
 
   font-size: 1.25rem;
   font-weight: bolder;
-  border-radius: 0.25rem;
-  box-shadow: inset 0 0 0 1px hsl(0, 0%, 84%);
-  background-color: white;
+
+  &:not([readonly]) {
+    border-radius: 0.25rem;
+    box-shadow: inset 0 0 0 1px hsl(0, 0%, 84%);
+    background-color: white;
+  }
 `;
 
 const Image = styled.img`
@@ -78,7 +83,7 @@ export const FieldHeading = ({ index, displayName, isFolded, isAlone, toggleToFo
       <Button onClick={toggleToFold}>
         <FoldIcon src={isFolded ? ChevronBottomIcon : ChevronUpIcon} />
       </Button>
-      <Heading type="text" placeholder="그룹" value={displayName} onChange={setDisplayName} />
+      <Heading type="text" placeholder="그룹" value={displayName} readOnly={!currentMode.isAdd} onChange={setDisplayName} />
       {currentMode.isAdd && (
         <Button onClick={addFieldGroup}>
           <AddButton src={PlusBlackIcon} />

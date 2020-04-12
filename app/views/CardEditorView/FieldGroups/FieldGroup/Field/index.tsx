@@ -14,11 +14,11 @@ import { FieldInput } from './FieldInput';
 const Layout = styled.div`
   display: grid;
   grid-gap: 0.5rem;
-  grid-template-columns: 16ch 16ch 1fr 1.5rem;
+  grid-template-columns: 12ch max-content 1.5rem;
   align-items: flex-start;
 
-  &[data-mode='View'] {
-    grid-template-columns: 12ch 1fr;
+  &[data-mode='Add'] {
+    grid-template-columns: 16ch 16ch 1fr 1.5rem;
   }
 `;
 
@@ -27,9 +27,11 @@ const TextInput = styled.input`
 
   padding: 0 0.25rem;
 
-  border-radius: 0.25rem;
-  box-shadow: inset 0 0 0 1px hsl(0, 0%, 84%);
-  background-color: white;
+  &:not([readonly]) {
+    border-radius: 0.25rem;
+    box-shadow: inset 0 0 0 1px hsl(0, 0%, 84%);
+    background-color: white;
+  }
 `;
 
 const AddButton = styled.img`
@@ -104,11 +106,11 @@ export const Field = ({ groupIndex, index, isAlone, model }: Props) => {
 
   return (
     <Layout data-mode={currentMode.state}>
-      {!currentMode.isView && (
+      {currentMode.isAdd && (
         <Autocomplete placeholder="속성 타입" defaultOption={InputTypeTable[model.type]} options={InputTypeList} onChange={selectType} />
       )}
-      <TextInput placeholder="속성 이름" readOnly={currentMode.isView} value={model.displayName} onChange={setDisplayName} />
-      <FieldInput type={model.type} value={model.value} isReadonly={currentMode.isView} onChange={setValue} />
+      <TextInput placeholder="속성 이름" readOnly={!currentMode.isAdd} value={model.displayName} onChange={setDisplayName} />
+      <FieldInput type={model.type} value={model.value} isReadonly={!currentMode.isAdd} onChange={setValue} />
       {currentMode.isAdd && <AddButton src={PlusBlackIcon} onClick={addField} />}
       {!isAlone && currentMode.isRemove && <DeleteButton src={CrossBlackIcon} onClick={removeField} />}
     </Layout>

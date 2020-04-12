@@ -14,9 +14,11 @@ import { UnknownInput } from './UnknownInput';
 const Layout = styled.div`
   padding: 0 0.25rem;
 
-  border-radius: 0.25rem;
-  box-shadow: inset 0 0 0 1px hsl(0, 0%, 84%);
-  background-color: white;
+  &[data-readonly='false'] {
+    border-radius: 0.25rem;
+    box-shadow: inset 0 0 0 1px hsl(0, 0%, 84%);
+    background-color: white;
+  }
 
   input {
     width: 100%;
@@ -46,7 +48,7 @@ type Props = {
 export const FieldInput = ({ type, value, isReadonly, onChange }: Props) => {
   const Input = InputTable[type as keyof typeof InputTable] || UnknownInput;
   return (
-    <Layout>
+    <Layout data-readonly={isReadonly}>
       <Input value={value} isReadonly={isReadonly} onChange={onChange} />
     </Layout>
   );

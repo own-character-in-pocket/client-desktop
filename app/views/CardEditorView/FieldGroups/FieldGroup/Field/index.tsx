@@ -61,7 +61,9 @@ const DeleteButton = styled.img`
 const InputTypeList = [
   { value: InputType.Text, label: '텍스트(한 줄)' },
   { value: InputType.Multiline, label: '텍스트(여러 줄)' },
-  { value: InputType.Number, label: '숫자' }
+  { value: InputType.Number, label: '숫자' },
+  { value: InputType.Color, label: '색상(단일)' },
+  { value: InputType.ColorPalette, label: '색상(다중)' }
 ];
 
 const InputTypeTable = InputTypeList.reduce((table, inputType) => {

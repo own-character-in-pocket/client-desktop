@@ -1,8 +1,8 @@
 import { InputType } from '@app/constants/InputType';
 import React from 'react';
 import styled from 'styled-components';
-// import { ColorInput } from './ColorInput';
-// import { ColorPalletteInput } from './ColorPalletteInput';
+import { ColorInput } from './ColorInput';
+import { ColorPaletteInput } from './ColorPaletteInput';
 // import { EmailInput } from './EmailInput';
 // import { ImageInput } from './ImageInput';
 import { MultilineInput } from './MultilineInput';
@@ -25,6 +25,8 @@ const Layout = styled.div`
 `;
 
 const InputTable = {
+  [InputType.Color]: ColorInput,
+  [InputType.ColorPalette]: ColorPaletteInput,
   [InputType.Multiline]: MultilineInput,
   [InputType.Number]: NumberInput,
   [InputType.Text]: TextInput
@@ -32,7 +34,6 @@ const InputTable = {
   // LinkInput,
   // ColorInput,
   // ImageInput,
-  // ColorPalletteInput
 };
 
 type Props = {

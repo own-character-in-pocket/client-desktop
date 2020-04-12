@@ -18,6 +18,7 @@ type Option = any;
 
 type Props = {
   className?: string;
+  isReadonly?: boolean;
   isCreateable?: boolean;
   placeholder?: string;
   inputValue?: string;
@@ -29,6 +30,7 @@ type Props = {
 
 export const Autocomplete = ({
   className,
+  isReadonly,
   isCreateable,
   placeholder,
   inputValue,
@@ -51,6 +53,7 @@ export const Autocomplete = ({
   return (
     <ReactSelect
       className={className}
+      isDisabled={isReadonly}
       isClearable={false}
       placeholder={placeholder}
       value={defaultOption}

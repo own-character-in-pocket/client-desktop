@@ -1,6 +1,6 @@
 import { enableMapSet } from 'immer';
 import React, { Fragment } from 'react';
-import { render } from 'react-dom';
+import ReactDOM from 'react-dom';
 import { AppContainer as ReactHotAppContainer } from 'react-hot-loader';
 import { MemoryRouter } from 'react-router-dom';
 import 'reflect-metadata';
@@ -25,11 +25,11 @@ const App = () => (
 
 declare const Root: HTMLDivElement;
 
-document.addEventListener('DOMContentLoaded', () =>
-  render(
+document.addEventListener('DOMContentLoaded', () => {
+  const app = (
     <AppContainer>
       <App />
-    </AppContainer>,
-    Root
-  )
-);
+    </AppContainer>
+  );
+  ReactDOM.render(app, Root);
+});

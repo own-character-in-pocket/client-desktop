@@ -1,8 +1,9 @@
+import { Color, Radius, Size, Swatch } from '@app/constants/CSSVariables';
 import React from 'react';
 import styled from 'styled-components';
 import { useStore } from '../Store';
-import { FieldGroup } from './FieldGroup';
 import { ModeAction } from '../Store/Mode';
+import { FieldGroup } from './FieldGroup';
 
 const Layout = styled.div``;
 
@@ -14,14 +15,14 @@ const ToggleMode = styled.div`
 
   padding: 0.5rem 0.25rem;
 
-  background-color: white;
+  background-color: ${Swatch.White};
 `;
 
 const ToggleButton = styled.button`
   padding: 0 0.25rem;
 
-  border-radius: 0.25rem;
-  box-shadow: 0 0 0 1px hsl(0, 0%, 84%);
+  border-radius: ${Radius.Normal};
+  box-shadow: 0 0 0 ${Size.BoxShadowThickness} ${Color.BoxShadowHover};
 `;
 
 const FieldGroupListContainer = styled.div``;

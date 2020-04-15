@@ -3,6 +3,7 @@ import CrossRedIcon from '@app/assets/icons/cross-red.svg';
 import PlusBlackIcon from '@app/assets/icons/plus-black.svg';
 import PlusBlueIcon from '@app/assets/icons/plus-blue.svg';
 import { Autocomplete } from '@app/atomics/Autocomplete';
+import { Color, Radius, Size, Swatch } from '@app/constants/CSSVariables';
 import { InputType } from '@app/constants/InputType';
 import { FieldModel } from '@app/models';
 import { useStore } from '@app/views/CardEditorView/Store';
@@ -27,10 +28,11 @@ const TextInput = styled.input`
 
   padding: 0 0.25rem;
 
+  border-radius: ${Radius.Normal};
+
   &:not([readonly]) {
-    border-radius: 0.25rem;
-    box-shadow: inset 0 0 0 1px hsl(0, 0%, 84%);
-    background-color: white;
+    box-shadow: inset 0 0 0 ${Size.BoxShadowThickness} ${Color.BoxShadowHover};
+    background-color: ${Swatch.White};
   }
 `;
 

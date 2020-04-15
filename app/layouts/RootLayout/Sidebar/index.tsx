@@ -4,6 +4,7 @@ import CrossRedIcon from '@app/assets/icons/cross-red.svg';
 import EggIcon from '@app/assets/icons/egg.svg';
 import HomeIcon from '@app/assets/icons/home.svg';
 import HumanIcon from '@app/assets/icons/human.svg';
+import { Color, Radius, Size, Swatch } from '@app/constants/CSSVariables';
 import { CARD_EDITOR_VIEW, CARD_GRID_VIEW, MAIN_VIEW } from '@app/constants/Views';
 import { useAppStore } from '@app/store';
 import { SidebarAction } from '@app/store/Sidebar';
@@ -29,7 +30,7 @@ const Layout = styled.div`
   padding: 0.5rem;
   padding-top: 0;
 
-  background-color: hsl(0, 0%, 92%);
+  background-color: ${Color.BackgroundSidebar};
 `;
 
 const Image = styled.img`
@@ -46,7 +47,7 @@ const Anchor = styled(Link)`
   margin-top: 0.5rem;
   padding: 0.25rem;
 
-  border-radius: 1rem;
+  border-radius: ${Radius.Bold};
 
   transition-property: opacity;
 
@@ -60,11 +61,11 @@ const Anchor = styled(Link)`
 `;
 
 const MainAnchor = styled(Anchor)`
-  background-color: hsl(30, 64%, 64%);
+  background-color: ${Swatch.Orange[3]};
 `;
 
 const CardGridAnchor = styled(Anchor)`
-  background-color: hsl(210, 64%, 64%);
+  background-color: ${Swatch.Blue[3]};
 `;
 
 const CloseButton = styled.img`
@@ -111,7 +112,7 @@ const Separator = styled.hr`
   margin-top: 0.5rem;
 
   border: 0;
-  border-bottom: 1px solid hsl(0, 0%, 84%);
+  border-bottom: ${Size.BorderThickness} solid ${Color.BorderNormal};
 `;
 
 export const Sidebar = () => {

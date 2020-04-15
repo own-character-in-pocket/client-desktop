@@ -1,14 +1,16 @@
 import { InputType } from '@app/constants/InputType';
 import { EntityModel, FieldGroupModel, FieldModel } from '@app/models';
 import { createDuck } from '@app/utils/store';
+import { Color } from '@app/constants/CSSVariables';
 
 const createInitialState = () => ({
   current: EntityModel.of({
+    cardType: 'Character',
     displayName: 'Danuel',
-    backgroundColor: 'hsl(210, 100%, 84%)',
+    backgroundColor: Color.Blue,
     relationshipList: [
-      { displayName: 'Danuel', backgroundColor: 'hsl(0, 100%, 84%)' },
-      { displayName: 'Danuel', backgroundColor: 'hsl(330, 100%, 84%)' }
+      { displayName: 'Danuel', backgroundColor: Color.Red },
+      { displayName: 'Danuel', backgroundColor: Color.Pink }
     ],
     fieldGroupList: [
       FieldGroupModel.of({
@@ -48,8 +50,8 @@ export const EntityAction = createDuck({
     },
 
     // Entity
-    setCardTypeId(state, cardTypeId: number) {
-      state.current.cardTypeId = cardTypeId;
+    setCardType(state, cardType: string) {
+      state.current.cardType = cardType;
     },
     setDisplayName(state, displayName: string) {
       state.current.displayName = displayName;
@@ -110,6 +112,12 @@ export const EntityAction = createDuck({
 
 const getDefaultValue = (type: InputType) => {
   switch (type) {
+    case InputType.Color: {
+      return '#000000';
+    }
+    case InputType.ColorPalette: {
+      return '#000000';
+    }
     case InputType.Multiline: {
       return '';
     }

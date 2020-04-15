@@ -4,6 +4,7 @@ import CrossBlackIcon from '@app/assets/icons/cross-black.svg';
 import CrossRedIcon from '@app/assets/icons/cross-red.svg';
 import PlusBlackIcon from '@app/assets/icons/plus-black.svg';
 import PlusBlueIcon from '@app/assets/icons/plus-blue.svg';
+import { Color, Radius, Size, Swatch } from '@app/constants/CSSVariables';
 import { useStore } from '@app/views/CardEditorView/Store';
 import { EntityAction } from '@app/views/CardEditorView/Store/Entity';
 import React, { ChangeEvent } from 'react';
@@ -19,18 +20,18 @@ const FoldIcon = styled.img`
 `;
 
 const Heading = styled.input`
-  width: 258px;
+  width: 16rem;
 
-  margin-left: 0.625rem;
+  margin-left: 0.75rem;
   padding: 0 0.25rem;
 
   font-size: 1.25rem;
   font-weight: bolder;
+  border-radius: ${Radius.Normal};
 
   &:not([readonly]) {
-    border-radius: 0.25rem;
-    box-shadow: inset 0 0 0 1px hsl(0, 0%, 84%);
-    background-color: white;
+    box-shadow: inset 0 0 0 ${Size.BoxShadowThickness} ${Color.BoxShadowHover};
+    background-color: ${Swatch.White};
   }
 `;
 
@@ -38,7 +39,7 @@ const Image = styled.img`
   width: 1.5rem;
   height: 1.5rem;
 
-  margin-left: 0.5rem;
+  margin-left: 0.625rem;
   padding: 0.25rem;
 `;
 

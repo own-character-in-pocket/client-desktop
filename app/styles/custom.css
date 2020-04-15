@@ -1,5 +1,6 @@
 html {
-  color: #212121;
+  color: var(--color-font);
+  background-color: var(--color-background-root);
 }
 
 a.active {

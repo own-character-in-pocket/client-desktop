@@ -1,3 +1,4 @@
+import { Color } from '@app/constants/CSSVariables';
 import { EntityModel } from '@app/models';
 import { createDuck } from '@app/utils/store';
 
@@ -6,14 +7,14 @@ const createInitialState = () => ({
     EntityModel.of({
       id: 0,
       displayName: 'Danuel',
-      backgroundColor: 'hsl(210, 100%, 84%)',
+      backgroundColor: Color.Blue,
       relationshipList: [
-        { displayName: 'Danuel', backgroundColor: 'hsl(0, 100%, 84%)' },
-        { displayName: 'Danuel', backgroundColor: 'hsl(330, 100%, 84%)' }
+        { displayName: 'Danuel', backgroundColor: Color.Red },
+        { displayName: 'Danuel', backgroundColor: Color.Pink }
       ]
     }),
-    EntityModel.of({ id: 1, displayName: 'Danuel', backgroundColor: 'hsl(0, 100%, 84%)' }),
-    EntityModel.of({ id: 2, displayName: 'Danuel', backgroundColor: 'hsl(330, 100%, 84%)' })
+    EntityModel.of({ id: 1, displayName: 'Danuel', backgroundColor: Color.Red }),
+    EntityModel.of({ id: 2, displayName: 'Danuel', backgroundColor: Color.Pink })
   ]
 });
 

@@ -1,10 +1,9 @@
 import EggIcon from '@app/assets/icons/egg.svg';
+import { Color } from '@app/constants/CSSVariables';
 import { Time } from '@app/utils/time';
 import { Exclude, Expose, plainToClass, Transform } from 'class-transformer';
 import { immerable } from 'immer';
 import { FieldGroupModel } from './FieldGroup';
-
-const DEFAULT_BACKGROUND_COLOR = 'hsl(210, 100%, 84%)';
 
 @Exclude()
 export class EntityModel {
@@ -18,7 +17,7 @@ export class EntityModel {
   id!: number;
 
   @Expose()
-  cardTypeId!: number;
+  cardType!: string;
 
   @Expose()
   displayName!: string;
@@ -28,7 +27,7 @@ export class EntityModel {
   thumbnail!: string;
 
   @Expose()
-  @Transform((value = DEFAULT_BACKGROUND_COLOR) => value)
+  @Transform((value = Color.BackgroundThumbnail) => value)
   backgroundColor!: string;
 
   @Expose()

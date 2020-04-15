@@ -1,3 +1,4 @@
+import { Radius } from '@app/constants/CSSVariables';
 import React, { ChangeEvent } from 'react';
 import ReactTextarea from 'react-autosize-textarea';
 import styled from 'styled-components';
@@ -7,7 +8,7 @@ const Layout = styled(ReactTextarea)`
 
   margin: 1px 0;
 
-  border-radius: 0.25rem;
+  border-radius: ${Radius.Normal};
 `;
 
 type Props = {

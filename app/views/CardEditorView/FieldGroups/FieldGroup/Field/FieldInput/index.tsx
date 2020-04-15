@@ -1,3 +1,4 @@
+import { Color, Radius, Size, Swatch } from '@app/constants/CSSVariables';
 import { InputType } from '@app/constants/InputType';
 import React from 'react';
 import styled from 'styled-components';
@@ -14,10 +15,11 @@ import { UnknownInput } from './UnknownInput';
 const Layout = styled.div`
   padding: 0 0.25rem;
 
+  border-radius: ${Radius.Normal};
+
   &[data-readonly='false'] {
-    border-radius: 0.25rem;
-    box-shadow: inset 0 0 0 1px hsl(0, 0%, 84%);
-    background-color: white;
+    box-shadow: inset 0 0 0 ${Size.BoxShadowThickness} ${Color.BoxShadowHover};
+    background-color: ${Swatch.White};
   }
 
   input {

@@ -16,11 +16,7 @@ html {
 
 html {
   min-height: 100vh;
-  min-height: -webkit-fill-available;
-  min-height: -moz-available;
-  min-height: available;
   height: auto;
-  background-color: hsl(0, 0% 98%);
 }
 
 html.disableScroll {
@@ -100,7 +96,7 @@ button {
 }
 
 input::placeholder {
-  color: hsl(0 0% 64%);
+  color: var(--swatch-gray-6);
 }
 
 input,
@@ -108,7 +104,7 @@ textarea {
   resize: none;
   outline: none;
   vertical-align: middle;
-  line-height: 1.4;
+  line-height: 1;
   border: 0;
   color: inherit;
   font-size: inherit;

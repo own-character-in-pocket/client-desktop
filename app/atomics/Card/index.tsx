@@ -1,3 +1,4 @@
+import { Color, Radius } from '@app/constants/CSSVariables';
 import { Styleable } from '@app/typings/styleable';
 import React, { ReactNode } from 'react';
 import styled from 'styled-components';
@@ -11,7 +12,7 @@ const Layout = styled.div`
 
   padding-bottom: calc(100% + 1.5rem);
 
-  border-radius: 4px;
+  border-radius: ${Radius.Normal};
 
   transition-property: box-shadow;
   transition-timing-function: linear;
@@ -21,7 +22,7 @@ const Layout = styled.div`
   }
 
   &:hover {
-    box-shadow: 0 0 16px 0 hsl(0, 0%, 84%);
+    box-shadow: 0 0 16px 0 ${Color.BoxShadowHover};
   }
 `;
 
@@ -32,7 +33,7 @@ const Top = styled.div`
 
   padding-bottom: 100%;
 
-  border-radius: 4px;
+  border-radius: ${Radius.Normal};
 `;
 
 const Bottom = styled.div`

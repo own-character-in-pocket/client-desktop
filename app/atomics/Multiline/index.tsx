@@ -1,12 +1,13 @@
+import { Color, Radius, Size, Swatch } from '@app/constants/CSSVariables';
 import React, { useRef } from 'react';
 import ReactTextareaAutosize from 'react-textarea-autosize';
 import styled from 'styled-components';
 
 const Layout = styled(ReactTextareaAutosize)`
   width: 100%;
-  background-color: transparent;
-  border: 1px solid hsl(0, 0%, 84%);
-  border-radius: 4px;
+  background-color: ${Swatch.Transparent};
+  border: ${Size.BorderThickness} solid ${Color.BorderHover};
+  border-radius: ${Radius.Normal};
   outline: none;
   text-align: left;
   text-transform: none;

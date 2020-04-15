@@ -1,0 +1,22 @@
+:root {
+  --color-white: var(--swatch-white);
+  --color-black: var(--swatch-black);
+  --color-pink: var(--swatch-pink-2);
+  --color-red: var(--swatch-red-2);
+  --color-blue: var(--swatch-blue-2);
+  --color-orange: var(--swatch-orange-2);
+
+  --color-font: var(--swatch-gray-9);
+
+  --color-border-normal: var(--swatch-gray-2);
+  --color-border-hover: var(--swatch-gray-4);
+
+  --color-box-shadow-normal: var(--swatch-gray-2);
+  --color-box-shadow-hover: var(--swatch-gray-4);
+
+  --color-background-root: var(--color-transparent);
+  --color-background-normal: var(--color-white);
+  --color-background-hover: var(--swatch-gray-1);
+  --color-background-thumbnail: var(--color-blue);
+  --color-background-sidebar: var(--swatch-gray-2);
+}

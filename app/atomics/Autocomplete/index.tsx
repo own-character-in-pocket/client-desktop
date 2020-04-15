@@ -1,4 +1,5 @@
 import ChevronBottom from '@app/assets/icons/chevron-bottom.svg';
+import { Color, Size } from '@app/constants/CSSVariables';
 import React from 'react';
 import ReactSelectNoncreatable, { components, InputActionMeta } from 'react-select';
 import ReactSelectCreatable from 'react-select/creatable';
@@ -76,7 +77,7 @@ export const Autocomplete = ({
           minHeight: 'initial',
           height: '1.5rem',
           border: 0,
-          boxShadow: 'inset 0 0 0 1px hsl(0, 0%, 84%)'
+          boxShadow: `inset 0 0 0 ${Size.BoxShadowThickness} ${Color.BoxShadowHover}`
         }),
         placeholder: style => ({
           ...style,
@@ -84,7 +85,9 @@ export const Autocomplete = ({
         }),
         input: style => ({
           ...style,
-          margin: 0
+          margin: 0,
+          paddingTop: 0,
+          paddingBottom: 0
         }),
         singleValue: style => ({
           ...style,

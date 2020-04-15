@@ -1,9 +1,10 @@
 import { Autocomplete } from '@app/atomics/Autocomplete';
-import { EntityModel } from '@app/models';
+import { Color, Radius, Swatch, Size } from '@app/constants/CSSVariables';
 import { SimpleCard } from '@app/molecules/SimpleCard';
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import styled from 'styled-components';
-import { useSelector } from '../../Store';
+import { useStore } from '../../Store';
+import { EntityAction } from '../../Store/Entity';
 
 const Layout = styled.div`
   display: grid;
@@ -25,21 +26,21 @@ const Right = styled.div`
 
   padding: 0.5rem;
 
-  border-radius: 0.25rem;
+  border-radius: ${Radius.Normal};
 
   transition-property: background-color;
 
   &:hover {
-    background-color: hsl(0, 0%, 96%);
+    background-color: ${Color.BackgroundHover};
   }
 `;
 
 const TextInput = styled.input`
   padding: 0 0.25rem;
 
-  border-radius: 0.25rem;
-  box-shadow: inset 0 0 0 1px hsl(0, 0%, 84%);
-  background-color: white;
+  border-radius: ${Radius.Normal};
+  box-shadow: inset 0 0 0 ${Size.BoxShadowThickness} ${Color.BoxShadowHover};
+  background-color: ${Swatch.White};
 `;
 
 const ImageInput = styled.input`
@@ -48,8 +49,30 @@ const ImageInput = styled.input`
   width: 100%;
 `;
 
+const CardTypeList = [{ value: 'Character', label: '캐릭터' }];
+
+const CardTypeTable = CardTypeList.reduce((table, cardType) => {
+  table[cardType.value] = cardType;
+  return table;
+}, {} as Record<string, typeof CardTypeList[number]>);
+
 export const Thumbnail = () => {
-  const entity = useSelector(store => store.Entity.current);
+  const [entity, dispatch] = useStore(store => store.Entity.current);
+
+  const setCardType = (cardType: string) => {
+    dispatch(EntityAction.setCardType(cardType));
+  };
+
+  const setDisplayName = (event: ChangeEvent<HTMLInputElement>) => {
+    const displayName = event.target.value;
+    dispatch(EntityAction.setDisplayName(displayName));
+  };
+
+  const setBackgroundColor = (event: ChangeEvent<HTMLInputElement>) => {
+    const backgroundColor = event.target.value;
+    dispatch(EntityAction.setBackgroundColor(backgroundColor));
+  };
+
   return (
     <Layout>
       <Left>
@@ -57,11 +80,16 @@ export const Thumbnail = () => {
       </Left>
       <Right>
         <div>카드 타입</div>
-        <Autocomplete placeholder="카드 타입" />
+        <Autocomplete
+          placeholder="카드 타입"
+          defaultOption={CardTypeTable[entity.cardType]}
+          options={CardTypeList}
+          onChange={setCardType}
+        />
         <div>카드 이름</div>
-        <TextInput placeholder="카드 이름" />
+        <TextInput placeholder="카드 이름" value={entity.displayName} onChange={setDisplayName} />
         <div>배경색</div>
-        <TextInput placeholder="hsl(210, 100%, 84%)" />
+        <TextInput type="color" value={entity.backgroundColor} onChange={setBackgroundColor} />
         <div>이미지</div>
         <ImageInput type="file" />
       </Right>

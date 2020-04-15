@@ -1,3 +1,4 @@
+import { Color, Radius } from '@app/constants/CSSVariables';
 import { FieldGroupModel } from '@app/models';
 import React, { useState } from 'react';
 import styled from 'styled-components';
@@ -7,12 +8,12 @@ import { FieldHeading } from './FieldHeading';
 const Layout = styled.div`
   padding: 0.5rem;
 
-  border-radius: 0.25rem;
+  border-radius: ${Radius.Normal};
 
   transition-property: background-color;
 
   &:hover {
-    background-color: hsl(0, 0%, 96%);
+    background-color: ${Color.BackgroundHover};
   }
 `;
 

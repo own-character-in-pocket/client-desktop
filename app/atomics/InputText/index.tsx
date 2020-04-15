@@ -1,14 +1,15 @@
+import { Color, Size } from '@app/constants/CSSVariables';
 import React, { ChangeEvent } from 'react';
 import styled from 'styled-components';
 
 const Layout = styled.input`
   width: 100%;
 
-  border-bottom: 1px solid hsl(0, 0%, 84%);
+  border-bottom: ${Size.BorderThickness} solid ${Color.BorderNormal};
 
   &:hover,
   &:focus {
-    border-bottom: 1px solid hsl(0, 0%, 64%);
+    border-bottom: ${Size.BorderThickness} solid ${Color.BorderHover};
   }
 `;
 

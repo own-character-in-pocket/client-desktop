@@ -1,9 +1,10 @@
 import { GraphQLID, GraphQLInt, GraphQLNonNull, GraphQLObjectType } from 'graphql';
+import { NodeInterface } from '../../NodeInterface';
 import { ImageInterface } from '../ImageInterface';
 
 export const ImagePngType = new GraphQLObjectType({
   name: 'ImagePngType',
-  interfaces: [ImageInterface],
+  interfaces: [NodeInterface, ImageInterface],
   fields: {
     id: {
       type: new GraphQLNonNull(GraphQLID)

@@ -1,9 +1,10 @@
 import { GraphQLInt, GraphQLNonNull, GraphQLObjectType } from 'graphql';
+import { NodeInterface } from '../../NodeInterface';
 import { ColorInterface } from '../ColorInterface';
 
 export const ColorHslType = new GraphQLObjectType({
   name: 'ColorHslType',
-  interfaces: [ColorInterface],
+  interfaces: [NodeInterface, ColorInterface],
   fields: {
     r: {
       type: new GraphQLNonNull(GraphQLInt)

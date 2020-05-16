@@ -3,12 +3,13 @@ import { createFieldMap } from '../../utils';
 import { DatetimeScalar } from '../DatetimeScalar';
 import { EntityInterface } from '../EntityInterface';
 import { FieldGroupType } from '../FieldGroupType';
+import { NodeInterface } from '../NodeInterface';
 import { UniverseType } from '../UniverseType';
 import { UriScalar } from '../UriScalar';
 
 export const EntityType: GraphQLObjectType = new GraphQLObjectType({
   name: 'EntityType',
-  interfaces: [EntityInterface],
+  interfaces: [NodeInterface, EntityInterface],
   fields: () =>
     createFieldMap({
       id: {

@@ -1,9 +1,10 @@
 import { GraphQLID, GraphQLInt, GraphQLNonNull, GraphQLObjectType } from 'graphql';
+import { NodeInterface } from '../../NodeInterface';
 import { VideoInterface } from '../VideoInterface';
 
 export const VideoAviType = new GraphQLObjectType({
   name: 'VideoAviType',
-  interfaces: [VideoInterface],
+  interfaces: [NodeInterface, VideoInterface],
   fields: {
     id: {
       type: new GraphQLNonNull(GraphQLID)

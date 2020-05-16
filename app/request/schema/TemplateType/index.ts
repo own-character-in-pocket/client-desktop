@@ -2,12 +2,13 @@ import { GraphQLID, GraphQLList, GraphQLNonNull, GraphQLObjectType, GraphQLStrin
 import { createFieldMap } from '../../utils';
 import { EntityInterface } from '../EntityInterface';
 import { FieldGroupType } from '../FieldGroupType';
+import { NodeInterface } from '../NodeInterface';
 import { UniverseType } from '../UniverseType';
 import { UriScalar } from '../UriScalar';
 
 export const TemplateType: GraphQLObjectType = new GraphQLObjectType({
   name: 'TemplateType',
-  interfaces: [EntityInterface],
+  interfaces: [NodeInterface, EntityInterface],
   fields: () =>
     createFieldMap({
       id: {

@@ -36,11 +36,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const QUERY = `
     query {
-      universe(id: 1) {
+      entity(input: { id: 1 }) {
         id
       }
     }
   `;
-  const VARIABLES = {};
-  request(QUERY, VARIABLES).then(console.log);
+  request(QUERY)
+    .then(console.log)
+    .catch(console.error);
 });

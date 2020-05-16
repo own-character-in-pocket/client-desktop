@@ -3,6 +3,7 @@ import { createFieldMap } from '../../utils';
 import { EntityInterface } from '../EntityInterface';
 import { FieldGroupType } from '../FieldGroupType';
 import { UniverseType } from '../UniverseType';
+import { UriScalar } from '../UriScalar';
 
 export const TemplateType: GraphQLObjectType = new GraphQLObjectType({
   name: 'TemplateType',
@@ -13,7 +14,7 @@ export const TemplateType: GraphQLObjectType = new GraphQLObjectType({
         type: new GraphQLNonNull(GraphQLID)
       },
       thumbnail: {
-        type: new GraphQLNonNull(GraphQLString)
+        type: new GraphQLNonNull(UriScalar)
       },
       backgroundColor: {
         type: new GraphQLNonNull(GraphQLString)

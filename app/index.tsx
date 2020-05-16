@@ -8,28 +8,39 @@ import { RootLayout } from './layouts/RootLayout';
 import { AppStoreProvider } from './store';
 import './styles';
 import { Views } from './views';
-
-enableMapSet();
-
-const AppContainer = process.env.PLAIN_HMR ? Fragment : ReactHotAppContainer;
-
-const App = () => (
-  <MemoryRouter>
-    <AppStoreProvider>
-      <RootLayout>
-        <Views />
-      </RootLayout>
-    </AppStoreProvider>
-  </MemoryRouter>
-);
+import { request } from './request';
 
 declare const Root: HTMLDivElement;
 
 document.addEventListener('DOMContentLoaded', () => {
+  enableMapSet();
+
+  const AppContainer = process.env.PLAIN_HMR ? Fragment : ReactHotAppContainer;
+
+  const App = () => (
+    <MemoryRouter>
+      <AppStoreProvider>
+        <RootLayout>
+          <Views />
+        </RootLayout>
+      </AppStoreProvider>
+    </MemoryRouter>
+  );
+
   const app = (
     <AppContainer>
       <App />
     </AppContainer>
   );
   ReactDOM.render(app, Root);
+
+  const QUERY = `
+    query {
+      universe(id: 1) {
+        id
+      }
+    }
+  `;
+  const VARIABLES = {};
+  request(QUERY, VARIABLES).then(console.log);
 });

@@ -12,9 +12,6 @@ export const entity = createField<any, EntityInput>({
   },
   async resolve(_parent, args, context) {
     const { id } = args.input;
-    const query = `SELECT * FROM \`Universe\` WHERE \`id\` = "${id}"`;
-    const data = await context.query.load({ query });
-    console.log(data);
-    return null;
+    return context.loaders.entity.load(id);
   }
 });

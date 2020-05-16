@@ -17,7 +17,7 @@ const createLoader = <K, V extends { id: K }>(tableName: string) => {
   const sql = `SELECT * FROM \`${tableName}\` WHERE \`id\` in (?)`;
   return new DataLoader<K, null | V>(async keyList => {
     const rowList = await orm.exec<readonly V[]>(sql, keyList);
-    const rowMap = new Map<K, V>(rowList.map(row => [row.id, row]));
+    const rowMap = new Map<K, V>(rowList.map(row => [(row.id as any).toString(), row]));
     return keyList.map(key => rowMap.get(key) || null);
   });
 };

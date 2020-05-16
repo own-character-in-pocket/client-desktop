@@ -9,6 +9,6 @@ export { FieldGroupModel } from './FieldGroup';
 export { FieldTypeModel } from './FieldType';
 
 const FILE_NAME = ':memory:';
-const MODEL_LIST: Model[] = [EntityModel.Empty, TemplateModel.Empty, UniverseModel.Empty];
+const MODEL_LIST: Model[] = [EntityModel, TemplateModel, UniverseModel];
 
 export const orm = ORM.create(FILE_NAME, MODEL_LIST);

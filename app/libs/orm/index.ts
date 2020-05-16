@@ -1,82 +1,12 @@
 import { Database } from 'sqlite3';
+import { createDDL } from './createDDL';
+import { Model } from './types';
 
-export const ColumnType = {
-  Blob: 'BLOB',
-  Text: 'TEXT',
-  Integer: 'INTEGER',
-  Real: 'REAL',
-  Numeric: 'NUEMRIC'
-} as const;
-
-export type RequiredColumnOption = {
-  readonly type: string;
-  readonly isNullable?: true;
-  readonly isUnique?: true;
-};
-
-export type AutoIncrementColumnOption = {
-  readonly isAutoIncrement?: true;
-};
-
-export type PrimaryKeyColumnOption = {
-  readonly isPrimaryKey?: Order;
-};
-
-export type ColumnOption = RequiredColumnOption & (AutoIncrementColumnOption | PrimaryKeyColumnOption);
-
-export enum Order {
-  Ascending = 'ASC',
-  Descending = 'DESC',
-
-  Default = Ascending
-}
-
-export type ColumnName = string;
-
-export abstract class Model {
-  get definition(): string {
-    return `CREATE TABLE IF NOT EXISTS \`${this.tableName}\` (${this.columnDefinition})`;
-  }
-
-  get tableName(): string {
-    throw new Error('Not implemented!');
-  }
-
-  get columnDefinition(): string {
-    return this.columnList.concat(this.primaryKeyDefinition).join(', ');
-  }
-
-  get columnList(): readonly string[] {
-    const columnList = Object.entries(this.columns) as ReadonlyArray<readonly [string, RequiredColumnOption & AutoIncrementColumnOption]>;
-    return columnList.map(([key, { type, isNullable = false, isAutoIncrement, isUnique }]) =>
-      [key, type, !isNullable && 'NOT NULL', isAutoIncrement && 'PRIMARY KEY AUTOINCREMENT', isUnique && 'UNIQUE'].filter(Boolean).join(' ')
-    );
-  }
-
-  get columns(): Readonly<Record<ColumnName, ColumnOption>> {
-    throw new Error('Not implemented!');
-  }
-
-  get primaryKeyDefinition(): string {
-    const primaryKeys = Object.entries(this.primaryKeys)
-      .map(([key, order]) => `${key} ${order}`)
-      .join(', ');
-    return `PRIMARY KEY(${primaryKeys})`;
-  }
-
-  get primaryKeys(): Record<string, Order> {
-    const columnList = Object.entries(this.columns) as ReadonlyArray<readonly [string, PrimaryKeyColumnOption]>;
-    return columnList.reduce((record, [key, { isPrimaryKey: order }]) => {
-      if (order) {
-        record[key] = order;
-      }
-      return record;
-    }, {} as Record<string, Order>);
-  }
-}
+export * from './decorator';
+export * from './types';
 
 export class ORM {
-  static create(fileName: string, tableList: readonly Model[]): ORM {
+  static create<M extends Model>(fileName: string, tableList: readonly M[]): ORM {
     const database = new Promise<Database>(async resolve => {
       const database = new Database(fileName);
       await this.createTableList(database, tableList);
@@ -87,13 +17,13 @@ export class ORM {
 
   constructor(private readonly database: Promise<Database>) {}
 
-  private static async createTableList(database: Database, tableList: readonly Model[]): Promise<void> {
-    await Promise.all(tableList.map(table => this.createTable(database, table)));
+  private static async createTableList<M extends Model>(database: Database, modelList: readonly M[]): Promise<void> {
+    await Promise.all(modelList.map(model => this.createTable(database, model)));
   }
 
-  private static createTable(database: Database, model: Model): Promise<void> {
+  private static createTable<M extends Model>(database: Database, model: M): Promise<void> {
     return new Promise<void>((resolve, reject) => {
-      database.exec(model.definition, error => {
+      database.exec(createDDL(model), error => {
         if (error) {
           reject(error);
         } else {

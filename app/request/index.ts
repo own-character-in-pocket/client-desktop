@@ -1,4 +1,4 @@
-import { graphql, printSchema } from 'graphql';
+import { graphql } from 'graphql';
 import { createContext } from './context';
 // import { initializeRepositories } from './repositories';
 import { Schema } from './schema';
@@ -10,5 +10,3 @@ export const request = (query: string, variables: Record<string, any> = {}) =>
     variableValues: variables,
     contextValue: createContext()
   });
-
-console.log(printSchema(Schema));
